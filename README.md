@@ -1,5 +1,6 @@
 # This repository
-The content in this repository is collected by me personally. Has nothing to do with the MCP team or [Mojang Studio](https://minecraft.fandom.com/wiki/Mojang_Studios).
+The content in this repository is collected by me personally. Has nothing to do with the MCP team or [Mojang Studio](https://minecraft.fandom.com/wiki/Mojang_Studios).  
+You can find something in [Branches](https://github.com/flowerinsnowdh/ModCoderPack/branches) or [Releases](https://github.com/flowerinsnowdh/ModCoderPack/releases).
 
 # Wiki
 > [https://minecraft.fandom.com/wiki/Programs_and_editors/Mod_Coder_Pack](https://minecraft.fandom.com/wiki/Programs_and_editors/Mod_Coder_Pack)
