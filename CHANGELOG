@@ -1,0 +1,10 @@
+== v3.0 ==
++ Complete rewrite of the scripts in python
++ RetroGuard used both for deof and reobf
++ Automatic detection of modified classes during reobfuscation
++ Protection on cleanup.bat/sh
++ Advanced logging system (logs/mcp.log, logs/mcperr.log)
++ Removed repackager.exe and mono dependancy on Linux
++ Cleaner directory structure
++ Out of the box decompilation compatibility with modded jars
++ Rolling update model on top of the usual full package distrib
