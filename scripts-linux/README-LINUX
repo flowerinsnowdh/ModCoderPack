@@ -1,0 +1,6 @@
+Things required to run:
+
+- Those scripts need to be moved in the root directory of MCP before using them.
+- wine to run jad and jadretro. We know, there are linux binaries of jad BUT those are v1.5.8e, we need 1.5.8g
+- python to run some of the tools
+- (linux version of the natives in jars/bin/natives to run the game, everything else can be used from the windows .minecraft folder as far as i tested, might be wrong though, so use the linux stuff for linux use :D)
