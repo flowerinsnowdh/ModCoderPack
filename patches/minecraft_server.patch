@@ -1,0 +1,2082 @@
+diff -U 3 minecraft_server.src\aa.java patches\aa.java
+--- minecraft_server.src\aa.java	Sun Oct 17 06:33:30 2010
++++ patches\aa.java	Sat Oct 16 16:41:45 2010
+@@ -15,7 +15,7 @@
+         h = true;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readDouble();
+         b = datainputstream.readDouble();
+@@ -24,7 +24,7 @@
+         super.a(datainputstream);
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeDouble(a);
+         dataoutputstream.writeDouble(b);
+diff -U 3 minecraft_server.src\ae.java patches\ae.java
+--- minecraft_server.src\ae.java	Sun Oct 17 06:33:30 2010
++++ patches\ae.java	Sun Oct 17 05:41:19 2010
+@@ -27,8 +27,8 @@
+ 
+     public ae(hg hg1, int i1, int j1)
+     {
+-        a = hg1;
+         super();
++        a = hg1;
+         b = ((java.util.List) (new ArrayList()));
+         f = new short[10];
+         g = 0;
+diff -U 3 minecraft_server.src\aj.java patches\aj.java
+--- minecraft_server.src\aj.java	Sun Oct 17 06:33:30 2010
++++ patches\aj.java	Sun Oct 17 01:02:18 2010
+@@ -22,59 +22,66 @@
+     {
+     }
+ 
+-    public static s a(java.io.InputStream inputstream)
++    public static s a(java.io.InputStream inputstream) throws IOException
+     {
+         java.io.DataInputStream datainputstream = new DataInputStream(((java.io.InputStream) (new GZIPInputStream(inputstream))));
++        try
++        {
+         s s1 = aj.a(((java.io.DataInput) (datainputstream)));
+-        datainputstream.close();
+         return s1;
+-        java.lang.Exception exception;
+-        exception;
++        }
++        finally
++        {
+         datainputstream.close();
+-        throw exception;
++        }
+     }
+ 
+-    public static void a(s s1, java.io.OutputStream outputstream)
++    public static void a(s s1, java.io.OutputStream outputstream) throws IOException
+     {
+         java.io.DataOutputStream dataoutputstream = new DataOutputStream(((java.io.OutputStream) (new GZIPOutputStream(outputstream))));
++        try
++        {
+         aj.a(s1, ((java.io.DataOutput) (dataoutputstream)));
++        }
++        finally
++        {
+         dataoutputstream.close();
+-        break MISSING_BLOCK_LABEL_35;
+-        java.lang.Exception exception;
+-        exception;
+-        dataoutputstream.close();
+-        throw exception;
++        }
+     }
+ 
+-    public static s a(byte abyte0[])
++    public static s a(byte abyte0[]) throws IOException
+     {
+         java.io.DataInputStream datainputstream = new DataInputStream(((java.io.InputStream) (new GZIPInputStream(((java.io.InputStream) (new ByteArrayInputStream(abyte0)))))));
++        try
++        {
+         s s1 = aj.a(((java.io.DataInput) (datainputstream)));
+         datainputstream.close();
+         return s1;
+-        java.lang.Exception exception;
+-        exception;
++        }
++        finally
++        {
+         datainputstream.close();
+-        throw exception;
++        }
+     }
+ 
+-    public static byte[] a(s s1)
++    public static byte[] a(s s1) throws IOException
+     {
+         java.io.ByteArrayOutputStream bytearrayoutputstream;
+         java.io.DataOutputStream dataoutputstream;
+         bytearrayoutputstream = new ByteArrayOutputStream();
+         dataoutputstream = new DataOutputStream(((java.io.OutputStream) (new GZIPOutputStream(((java.io.OutputStream) (bytearrayoutputstream))))));
++        try
++        {
+         aj.a(s1, ((java.io.DataOutput) (dataoutputstream)));
++        }
++        finally
++        {
+         dataoutputstream.close();
+-        break MISSING_BLOCK_LABEL_43;
+-        java.lang.Exception exception;
+-        exception;
+-        dataoutputstream.close();
+-        throw exception;
++        }
+         return bytearrayoutputstream.toByteArray();
+     }
+ 
+-    public static s a(java.io.DataInput datainput)
++    public static s a(java.io.DataInput datainput) throws IOException
+     {
+         gg gg1 = gg.b(datainput);
+         if(gg1 instanceof s)
+@@ -83,7 +90,7 @@
+             throw new IOException("Root tag must be a named compound tag");
+     }
+ 
+-    public static void a(s s1, java.io.DataOutput dataoutput)
++    public static void a(s s1, java.io.DataOutput dataoutput) throws IOException
+     {
+         gg.a(((gg) (s1)), dataoutput);
+     }
+diff -U 3 minecraft_server.src\aq.java patches\aq.java
+--- minecraft_server.src\aq.java	Sun Oct 17 06:33:30 2010
++++ patches\aq.java	Sat Oct 16 17:28:51 2010
+@@ -10,9 +10,9 @@
+ 
+     public abstract im a(dy dy, int i, int j);
+ 
+-    public abstract void a(dy dy, im im);
++    public abstract void a(dy dy, im im) throws IOException;
+ 
+-    public abstract void b(dy dy, im im);
++    public abstract void b(dy dy, im im) throws IOException;
+ 
+     public abstract void a();
+ 
+diff -U 3 minecraft_server.src\as.java patches\as.java
+--- minecraft_server.src\as.java	Sun Oct 17 06:33:30 2010
++++ patches\as.java	Sat Oct 16 16:49:41 2010
+@@ -88,9 +88,9 @@
+ 
+     static 
+     {
+-        as.a(df, "Furnace");
+-        as.a(hb, "Chest");
+-        as.a(ig, "Sign");
+-        as.a(bs, "MobSpawner");
++        as.a(df.class, "Furnace");
++        as.a(hb.class, "Chest");
++        as.a(ig.class, "Sign");
++        as.a(bs.class, "MobSpawner");
+     }
+ }
+diff -U 3 minecraft_server.src\ax.java patches\ax.java
+--- minecraft_server.src\ax.java	Sun Oct 17 06:33:30 2010
++++ patches\ax.java	Sat Oct 16 16:49:58 2010
+@@ -89,9 +89,9 @@
+         if(a == cr.a)
+             list = dy1.b(((dj) (null)), dg.b((float)i + f, j, (float)k + f, (float)(i + 1) - f, (double)j + 0.25D, (float)(k + 1) - f));
+         if(a == cr.b)
+-            list = dy1.a(is, dg.b((float)i + f, j, (float)k + f, (float)(i + 1) - f, (double)j + 0.25D, (float)(k + 1) - f));
++            list = dy1.a(is.class, dg.b((float)i + f, j, (float)k + f, (float)(i + 1) - f, (double)j + 0.25D, (float)(k + 1) - f));
+         if(a == cr.c)
+-            list = dy1.a(fc, dg.b((float)i + f, j, (float)k + f, (float)(i + 1) - f, (double)j + 0.25D, (float)(k + 1) - f));
++            list = dy1.a(fc.class, dg.b((float)i + f, j, (float)k + f, (float)(i + 1) - f, (double)j + 0.25D, (float)(k + 1) - f));
+         if(list.size() > 0)
+             flag1 = true;
+         if(flag1 && !flag)
+diff -U 3 minecraft_server.src\ba.java patches\ba.java
+--- minecraft_server.src\ba.java	Sun Oct 17 06:33:30 2010
++++ patches\ba.java	Sat Oct 16 16:50:14 2010
+@@ -21,12 +21,12 @@
+         a = s;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readUTF();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeUTF(a);
+     }
+diff -U 3 minecraft_server.src\bb.java patches\bb.java
+--- minecraft_server.src\bb.java	Sun Oct 17 06:33:30 2010
++++ patches\bb.java	Sat Oct 16 16:50:32 2010
+@@ -8,6 +8,7 @@
+ import java.io.IOException;
+ import java.net.Socket;
+ import java.net.SocketAddress;
++import java.net.SocketException;
+ import java.util.Collections;
+ import java.util.LinkedList;
+ import java.util.List;
+@@ -36,7 +37,7 @@
+     private int s;
+     private int t;
+ 
+-    public bb(java.net.Socket socket, java.lang.String s1, ej ej1)
++    public bb(java.net.Socket socket, java.lang.String s1, ej ej1) throws IOException
+     {
+         d = new Object();
+         h = true;
+diff -U 3 minecraft_server.src\bf.java patches\bf.java
+--- minecraft_server.src\bf.java	Sun Oct 17 06:33:30 2010
++++ patches\bf.java	Sat Oct 16 16:51:08 2010
+@@ -21,12 +21,12 @@
+         a = i;
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeInt(a);
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         a = datainput.readInt();
+     }
+diff -U 3 minecraft_server.src\bg.java patches\bg.java
+--- minecraft_server.src\bg.java	Sun Oct 17 06:33:30 2010
++++ patches\bg.java	Sat Oct 16 16:51:38 2010
+@@ -26,7 +26,7 @@
+         g = true;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         super.a(datainputstream);
+         b = datainputstream.readByte();
+@@ -36,7 +36,7 @@
+         f = datainputstream.readByte();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         super.a(dataoutputstream);
+         dataoutputstream.writeByte(((int) (b)));
+diff -U 3 minecraft_server.src\bl.java patches\bl.java
+--- minecraft_server.src\bl.java	Sun Oct 17 06:33:30 2010
++++ patches\bl.java	Sat Oct 16 16:51:48 2010
+@@ -110,7 +110,7 @@
+                         try
+                         {
+                             is1 = (is)c[j1].getConstructor(new java.lang.Class[] {
+-                                dy
++                                dy.class
+                             }).newInstance(new java.lang.Object[] {
+                                 dy1
+                             });
+diff -U 3 minecraft_server.src\bm.java patches\bm.java
+--- minecraft_server.src\bm.java	Sun Oct 17 06:33:30 2010
++++ patches\bm.java	Sun Oct 17 05:51:46 2010
+@@ -12,8 +12,8 @@
+ 
+     public bm(java.lang.String s, net.minecraft.server.MinecraftServer minecraftserver)
+     {
+-        a = minecraftserver;
+         super(s);
++        a = minecraftserver;
+     }
+ 
+     public void run()
+diff -U 3 minecraft_server.src\bo.java patches\bo.java
+--- minecraft_server.src\bo.java	Sun Oct 17 06:33:30 2010
++++ patches\bo.java	Sat Oct 16 16:53:48 2010
+@@ -21,12 +21,12 @@
+         a = byte0;
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeByte(((int) (a)));
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         a = datainput.readByte();
+     }
+diff -U 3 minecraft_server.src\bp.java patches\bp.java
+--- minecraft_server.src\bp.java	Sun Oct 17 06:33:30 2010
++++ patches\bp.java	Sun Oct 17 05:55:28 2010
+@@ -12,8 +12,8 @@
+ 
+     public bp(net.minecraft.server.MinecraftServer minecraftserver)
+     {
+-        a = minecraftserver;
+         super();
++        a = minecraftserver;
+         setDaemon(true);
+         start();
+     }
+diff -U 3 minecraft_server.src\bu.java patches\bu.java
+--- minecraft_server.src\bu.java	Sun Oct 17 06:33:30 2010
++++ patches\bu.java	Sat Oct 16 17:48:51 2010
+@@ -84,7 +84,7 @@
+         if(i == 3)
+             f5 -= c(b.z);
+         f4 += c(b.A);
+-        a(f3, f4, f5);
++        a((double)f3, (double)f4, (double)f5);
+         float f7 = -0.00625F;
+         v.c(f3 - f - f7, f4 - f1 - f7, f5 - f2 - f7, f3 + f + f7, f4 + f1 + f7, f5 + f2 + f7);
+     }
+diff -U 3 minecraft_server.src\bv.java patches\bv.java
+--- minecraft_server.src\bv.java	Sun Oct 17 06:33:30 2010
++++ patches\bv.java	Sat Oct 16 16:53:56 2010
+@@ -59,7 +59,7 @@
+         return g <= bv1.g ? 0 : 1;
+     }
+ 
+-    public volatile int compareTo(java.lang.Object obj)
++    public int compareTo(java.lang.Object obj)
+     {
+         return a((bv)obj);
+     }
+diff -U 3 minecraft_server.src\c.java patches\c.java
+--- minecraft_server.src\c.java	Sun Oct 17 06:33:30 2010
++++ patches\c.java	Sat Oct 16 16:54:12 2010
+@@ -36,7 +36,7 @@
+         h = gp1 != null ? gp1.c : 0;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.readUTF();
+@@ -48,7 +48,7 @@
+         h = ((int) (datainputstream.readShort()));
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeUTF(b);
+diff -U 3 minecraft_server.src\cb.java patches\cb.java
+--- minecraft_server.src\cb.java	Sun Oct 17 06:33:30 2010
++++ patches\cb.java	Sat Oct 16 16:54:25 2010
+@@ -25,14 +25,14 @@
+         c = k;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.readInt();
+         c = datainputstream.readInt();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeInt(b);
+diff -U 3 minecraft_server.src\ce.java patches\ce.java
+--- minecraft_server.src\ce.java	Sun Oct 17 06:33:30 2010
++++ patches\ce.java	Sat Oct 16 16:54:34 2010
+@@ -23,13 +23,13 @@
+         b = j;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.readInt();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeInt(b);
+diff -U 3 minecraft_server.src\cf.java patches\cf.java
+--- minecraft_server.src\cf.java	Sun Oct 17 06:33:30 2010
++++ patches\cf.java	Sat Oct 16 16:54:47 2010
+@@ -41,7 +41,7 @@
+         f = byte1;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.readInt();
+@@ -51,7 +51,7 @@
+         f = (byte)datainputstream.read();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeInt(b);
+diff -U 3 minecraft_server.src\cn.java patches\cn.java
+--- minecraft_server.src\cn.java	Sun Oct 17 06:33:30 2010
++++ patches\cn.java	Sat Oct 16 16:55:36 2010
+@@ -101,7 +101,7 @@
+ 
+     private aw c(hq hq1, int j, int k, int l)
+     {
+-        aw aw1 = aw.b(0.0D, 0.0D, 0.0D);
++        aw aw1 = ((aw)null).b(0.0D, 0.0D, 0.0D);
+         int i1 = b(hq1, j, k, l);
+         for(int j1 = 0; j1 < 4; j1++)
+         {
+diff -U 3 minecraft_server.src\cr.java patches\cr.java
+--- minecraft_server.src\cr.java	Sun Oct 17 06:33:30 2010
++++ patches\cr.java	Sat Oct 16 16:56:50 2010
+@@ -4,36 +4,9 @@
+ // Source File Name:   SourceFile
+ 
+ 
+-public final class cr extends java.lang.Enum
++public enum cr
+ {
+-
+-    public static final cr a;
+-    public static final cr b;
+-    public static final cr c;
+-    private static final cr d[];
+-
+-    public static cr[] values()
+-    {
+-        return (cr[])((cr []) (d)).clone();
+-    }
+-
+-    public static cr valueOf(java.lang.String s)
+-    {
+-        return (cr)java.lang.Enum.valueOf(cr, s);
+-    }
+-
+-    private cr(java.lang.String s, int i)
+-    {
+-        super(s, i);
+-    }
+-
+-    static 
+-    {
+-        a = new cr("everything", 0);
+-        b = new cr("mobs", 1);
+-        c = new cr("players", 2);
+-        d = (new cr[] {
+-            a, b, c
+-        });
+-    }
++	a, // everything
++	b, // mobs
++	c; // players
+ }
+diff -U 3 minecraft_server.src\ct.java patches\ct.java
+--- minecraft_server.src\ct.java	Sun Oct 17 06:33:30 2010
++++ patches\ct.java	Sat Oct 16 16:57:01 2010
+@@ -21,12 +21,12 @@
+         a = i;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+     }
+diff -U 3 minecraft_server.src\cu.java patches\cu.java
+--- minecraft_server.src\cu.java	Sun Oct 17 06:33:30 2010
++++ patches\cu.java	Sun Oct 17 05:55:47 2010
+@@ -15,9 +15,9 @@
+ 
+     cu(dc dc1, java.lang.String s, net.minecraft.server.MinecraftServer minecraftserver)
+     {
++        super(s);
+         b = dc1;
+         a = minecraftserver;
+-        super(s);
+     }
+ 
+     public void run()
+diff -U 3 minecraft_server.src\cx.java patches\cx.java
+--- minecraft_server.src\cx.java	Sun Oct 17 06:33:30 2010
++++ patches\cx.java	Sat Oct 16 16:57:20 2010
+@@ -23,14 +23,14 @@
+         g = true;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         super.a(datainputstream);
+         e = datainputstream.readByte();
+         f = datainputstream.readByte();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         super.a(dataoutputstream);
+         dataoutputstream.writeByte(((int) (e)));
+diff -U 3 minecraft_server.src\cy.java patches\cy.java
+--- minecraft_server.src\cy.java	Sun Oct 17 06:33:31 2010
++++ patches\cy.java	Sat Oct 16 16:59:48 2010
+@@ -4,36 +4,15 @@
+ // Source File Name:   SourceFile
+ 
+ 
+-public final class cy extends java.lang.Enum
++public enum cy
+ {
++	a(15), // sky
++	b(0); // block
+ 
+-    public static final cy a;
+-    public static final cy b;
+-    public final int c;
+-    private static final cy d[];
++	public final int c;
+ 
+-    public static cy[] values()
+-    {
+-        return (cy[])((cy []) (d)).clone();
+-    }
+-
+-    public static cy valueOf(java.lang.String s)
+-    {
+-        return (cy)java.lang.Enum.valueOf(cy, s);
+-    }
+-
+-    private cy(java.lang.String s, int i, int j)
+-    {
+-        super(s, i);
+-        c = j;
+-    }
+-
+-    static 
+-    {
+-        a = new cy("Sky", 0, 15);
+-        b = new cy("Block", 1, 0);
+-        d = (new cy[] {
+-            a, b
+-        });
+-    }
++	private cy(int arg3)
++	{
++		this.c = arg3;
++	}
+ }
+diff -U 3 minecraft_server.src\cz.java patches\cz.java
+--- minecraft_server.src\cz.java	Sun Oct 17 06:33:31 2010
++++ patches\cz.java	Sun Oct 17 01:06:33 2010
+@@ -40,19 +40,20 @@
+         f = j1;
+         abyte0 = dy1.c(i, j, k, l, i1, j1);
+         deflater = new Deflater(1);
++        try
++        {
+         deflater.setInput(abyte0);
+         deflater.finish();
+         g = new byte[(l * i1 * j1 * 5) / 2];
+         h = deflater.deflate(g);
++        }
++        finally
++        {
+         deflater.end();
+-        break MISSING_BLOCK_LABEL_129;
+-        java.lang.Exception exception;
+-        exception;
+-        deflater.end();
+-        throw exception;
++        }
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         java.util.zip.Inflater inflater;
+         a = datainputstream.readInt();
+@@ -71,19 +72,18 @@
+         {
+             inflater.inflate(g);
+         }
+-        catch(java.util.zip.DataFormatException dataformatexception)
++        catch (DataFormatException localDataFormatException)
+         {
+             throw new IOException("Bad compressed data format");
+         }
++        finally
++        {
+         inflater.end();
+-        break MISSING_BLOCK_LABEL_147;
+-        java.lang.Exception exception;
+-        exception;
+-        inflater.end();
+-        throw exception;
++
++        }
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeShort(b);
+diff -U 3 minecraft_server.src\d.java patches\d.java
+--- minecraft_server.src\d.java	Sun Oct 17 06:33:31 2010
++++ patches\d.java	Sat Oct 16 17:02:36 2010
+@@ -21,12 +21,12 @@
+         a = l;
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeLong(a);
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         a = datainput.readLong();
+     }
+diff -U 3 minecraft_server.src\da.java patches\da.java
+--- minecraft_server.src\da.java	Sun Oct 17 06:33:31 2010
++++ patches\da.java	Sat Oct 16 17:02:45 2010
+@@ -26,14 +26,14 @@
+         c = flag;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.readInt();
+         c = datainputstream.read() != 0;
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeInt(b);
+diff -U 3 minecraft_server.src\dc.java patches\dc.java
+--- minecraft_server.src\dc.java	Sun Oct 17 06:33:31 2010
++++ patches\dc.java	Sun Oct 17 05:41:46 2010
+@@ -21,9 +21,9 @@
+     private int f;
+     private java.util.ArrayList g;
+     private java.util.ArrayList h;
+-    public net.minecraft.server.MinecraftServer c;
++    public MinecraftServer c;
+ 
+-    public dc(net.minecraft.server.MinecraftServer minecraftserver, java.net.InetAddress inetaddress, int i)
++    public dc(MinecraftServer minecraftserver, java.net.InetAddress inetaddress, int i) throws IOException
+     {
+         b = false;
+         f = 0;
+diff -U 3 minecraft_server.src\dd.java patches\dd.java
+--- minecraft_server.src\dd.java	Sun Oct 17 06:33:31 2010
++++ patches\dd.java	Sat Oct 16 17:03:06 2010
+@@ -16,9 +16,9 @@
+ 
+     dd(ew ew1, z z1)
+     {
++        super();
+         b = ew1;
+         a = z1;
+-        super();
+     }
+ 
+     public void run()
+diff -U 3 minecraft_server.src\dj.java patches\dj.java
+--- minecraft_server.src\dj.java	Sun Oct 17 06:33:31 2010
++++ patches\dj.java	Sat Oct 16 17:03:30 2010
+@@ -672,7 +672,7 @@
+ 
+     protected abstract void a(s s1);
+ 
+-    protected transient dm a(double ad1[])
++    protected dm a(double ad1[])
+     {
+         dm dm1 = new dm();
+         double ad2[] = ad1;
+@@ -686,7 +686,7 @@
+         return dm1;
+     }
+ 
+-    protected transient dm a(float af1[])
++    protected dm a(float af1[])
+     {
+         dm dm1 = new dm();
+         float af2[] = af1;
+diff -U 3 minecraft_server.src\dl.java patches\dl.java
+--- minecraft_server.src\dl.java	Sun Oct 17 06:33:31 2010
++++ patches\dl.java	Sat Oct 16 17:03:41 2010
+@@ -29,7 +29,7 @@
+         e = i;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         e = ((int) (datainputstream.readByte()));
+@@ -38,7 +38,7 @@
+         d = datainputstream.readInt();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeByte(e);
+diff -U 3 minecraft_server.src\dm.java patches\dm.java
+--- minecraft_server.src\dm.java	Sun Oct 17 06:33:31 2010
++++ patches\dm.java	Sat Oct 16 17:03:49 2010
+@@ -20,7 +20,7 @@
+         a = ((java.util.List) (new ArrayList()));
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         if(a.size() > 0)
+             b = ((gg)a.get(0)).a();
+@@ -33,7 +33,7 @@
+ 
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         b = datainput.readByte();
+         int i = datainput.readInt();
+diff -U 3 minecraft_server.src\dofix.java patches\dofix.java
+--- minecraft_server.src\dofix.java	Sun Oct 17 06:33:31 2010
++++ patches\dofix.java	Sat Oct 16 16:37:37 2010
+@@ -6,12 +6,12 @@
+ import java.util.ArrayList;
+ import java.util.Random;
+ 
+-public class do extends ff
++public class dofix extends ff
+ {
+ 
+     private ff a;
+ 
+-    protected do(int j, ff ff1)
++    protected dofix(int j, ff ff1)
+     {
+         super(j, ff1.bb, ff1.bn);
+         a = ff1;
+diff -U 3 minecraft_server.src\dq.java patches\dq.java
+--- minecraft_server.src\dq.java	Sun Oct 17 06:33:31 2010
++++ patches\dq.java	Sat Oct 16 17:03:58 2010
+@@ -29,7 +29,7 @@
+         h = true;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readDouble();
+         b = datainputstream.readDouble();
+@@ -40,7 +40,7 @@
+         super.a(datainputstream);
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeDouble(a);
+         dataoutputstream.writeDouble(b);
+diff -U 3 minecraft_server.src\dr.java patches\dr.java
+--- minecraft_server.src\dr.java	Sun Oct 17 06:33:31 2010
++++ patches\dr.java	Sat Oct 16 17:04:08 2010
+@@ -22,7 +22,7 @@
+         d = byte2;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         super.a(datainputstream);
+         b = datainputstream.readByte();
+@@ -30,7 +30,7 @@
+         d = datainputstream.readByte();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         super.a(dataoutputstream);
+         dataoutputstream.writeByte(((int) (b)));
+diff -U 3 minecraft_server.src\dt.java patches\dt.java
+--- minecraft_server.src\dt.java	Sun Oct 17 06:33:31 2010
++++ patches\dt.java	Sat Oct 16 17:04:17 2010
+@@ -21,12 +21,12 @@
+         a = d;
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeDouble(a);
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         a = datainput.readDouble();
+     }
+diff -U 3 minecraft_server.src\dy.java patches\dy.java
+--- minecraft_server.src\dy.java	Sun Oct 17 06:33:31 2010
++++ patches\dy.java	Sun Oct 17 01:12:10 2010
+@@ -136,18 +136,24 @@
+         s = new File(file, s1);
+         s.mkdirs();
+         java.io.DataOutputStream dataoutputstream;
++      
++        try
++        {
+         java.io.File file1 = new File(s, "session.lock");
+         dataoutputstream = new DataOutputStream(((java.io.OutputStream) (new FileOutputStream(file1))));
++	        try
++            {
+         dataoutputstream.writeLong(F);
++	        }
++            finally
++            {
+         dataoutputstream.close();
+-        break MISSING_BLOCK_LABEL_350;
+-        java.lang.Exception exception1;
+-        exception1;
+-        dataoutputstream.close();
+-        throw exception1;
+-        java.io.IOException ioexception;
+-        ioexception;
++	        }
++        }
++        catch (java.io.IOException ioexception)
++        {
+         throw new RuntimeException("Failed to check session lock, aborting");
++        }
+         java.io.File file2 = new File(s, "level.dat");
+         q = !file2.exists();
+         if(file2.exists())
+@@ -1660,20 +1666,25 @@
+ 
+     public void g()
+     {
++        try
++        {
+         java.io.DataInputStream datainputstream;
+         java.io.File file = new File(s, "session.lock");
+         datainputstream = new DataInputStream(((java.io.InputStream) (new FileInputStream(file))));
++            try
++            {
+         if(datainputstream.readLong() != F)
+             throw new fd("The save is being accessed from another location, aborting");
++            }
++            finally
++            {
+         datainputstream.close();
+-        break MISSING_BLOCK_LABEL_80;
+-        java.lang.Exception exception;
+-        exception;
+-        datainputstream.close();
+-        throw exception;
+-        java.io.IOException ioexception;
+-        ioexception;
++            }
++        }
++        catch (java.io.IOException ioexception)
++        {
+         throw new fd("Failed to check session lock, aborting");
++        }
+     }
+ 
+     static 
+diff -U 3 minecraft_server.src\e.java patches\e.java
+--- minecraft_server.src\e.java	Sun Oct 17 06:33:31 2010
++++ patches\e.java	Sat Oct 16 17:07:41 2010
+@@ -21,12 +21,12 @@
+         a = s;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readUTF();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeUTF(a);
+     }
+diff -U 3 minecraft_server.src\ee.java patches\ee.java
+--- minecraft_server.src\ee.java	Sun Oct 17 06:33:32 2010
++++ patches\ee.java	Sat Oct 16 17:08:06 2010
+@@ -21,11 +21,11 @@
+     {
+         super(file, s);
+         z = false;
+-        C = ((bl) (new hu(this, 200, dz, new java.lang.Class[] {
+-            fm, ek, eu, bk, fh
++        C = ((bl) (new hu(this, 200, dz.class, new java.lang.Class[] {
++            fm.class, ek.class, eu.class, bk.class, fh.class
+         })));
+-        D = new bl(15, at, new java.lang.Class[] {
+-            cj, gu, ay, hi
++        D = new bl(15, at.class, new java.lang.Class[] {
++            cj.class, gu.class, ay.class, hi.class
+         });
+         B = flag;
+     }
+diff -U 3 minecraft_server.src\en.java patches\en.java
+--- minecraft_server.src\en.java	Sun Oct 17 06:33:32 2010
++++ patches\en.java	Sat Oct 16 17:08:16 2010
+@@ -27,14 +27,14 @@
+             i = 1;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = ((int) (datainputstream.readShort()));
+         b = ((int) (datainputstream.readByte()));
+         c = ((int) (datainputstream.readShort()));
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeShort(a);
+         dataoutputstream.writeByte(b);
+diff -U 3 minecraft_server.src\eo.java patches\eo.java
+--- minecraft_server.src\eo.java	Sun Oct 17 06:33:32 2010
++++ patches\eo.java	Sun Oct 17 01:28:27 2010
+@@ -53,8 +53,10 @@
+     {
+         java.io.File file;
+         file = a(i, j);
+-        if(file == null || !file.exists())
+-            break MISSING_BLOCK_LABEL_291;
++        if(file != null && file.exists())
++        {
++        try
++        {
+         s s1;
+         java.io.FileInputStream fileinputstream = new FileInputStream(file);
+         s1 = aj.a(((java.io.InputStream) (fileinputstream)));
+@@ -68,8 +70,6 @@
+             java.lang.System.out.println((new StringBuilder()).append("Chunk file at ").append(i).append(",").append(j).append(" is missing block data, skipping").toString());
+             return null;
+         }
+-        try
+-        {
+             im im1 = eo.a(dy1, s1.j("Level"));
+             if(!im1.a(i, j))
+             {
+@@ -83,6 +83,7 @@
+         catch(java.lang.Exception exception)
+         {
+             exception.printStackTrace();
++        }
+         }
+         return null;
+     }
+diff -U 3 minecraft_server.src\ep.java patches\ep.java
+--- minecraft_server.src\ep.java	Sun Oct 17 06:33:32 2010
++++ patches\ep.java	Sat Oct 16 17:11:10 2010
+@@ -8,13 +8,13 @@
+ {
+ 
+     private hq a;
+-    private if b;
++    private iffix b;
+     private hf c;
+     private a d[];
+ 
+     public ep(hq hq1)
+     {
+-        b = new if();
++        b = new iffix();
+         c = new hf();
+         d = new a[32];
+         a = hq1;
+diff -U 3 minecraft_server.src\et.java patches\et.java
+--- minecraft_server.src\et.java	Sun Oct 17 06:33:32 2010
++++ patches\et.java	Sat Oct 16 17:11:23 2010
+@@ -31,7 +31,7 @@
+         e = dy1.b(i, j, k);
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.read();
+@@ -40,7 +40,7 @@
+         e = datainputstream.read();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.write(b);
+diff -U 3 minecraft_server.src\ew.java patches\ew.java
+--- minecraft_server.src\ew.java	Sun Oct 17 06:33:32 2010
++++ patches\ew.java	Sun Oct 17 05:56:34 2010
+@@ -22,7 +22,7 @@
+     private z h;
+     private java.lang.String i;
+ 
+-    public ew(net.minecraft.server.MinecraftServer minecraftserver, java.net.Socket socket, java.lang.String s)
++    public ew(net.minecraft.server.MinecraftServer minecraftserver, java.net.Socket socket, java.lang.String s) throws IOException
+     {
+         c = false;
+         f = 0;
+diff -U 3 minecraft_server.src\ex.java patches\ex.java
+--- minecraft_server.src\ex.java	Sun Oct 17 06:33:32 2010
++++ patches\ex.java	Sat Oct 16 16:51:38 2010
+@@ -29,12 +29,12 @@
+         a = i;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+     }
+diff -U 3 minecraft_server.src\fb.java patches\fb.java
+--- minecraft_server.src\fb.java	Sun Oct 17 06:33:32 2010
++++ patches\fb.java	Sat Oct 16 17:11:38 2010
+@@ -21,12 +21,12 @@
+         a = word0;
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeShort(((int) (a)));
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         a = datainput.readShort();
+     }
+diff -U 3 minecraft_server.src\fe.java patches\fe.java
+--- minecraft_server.src\fe.java	Sun Oct 17 06:33:32 2010
++++ patches\fe.java	Sat Oct 16 17:11:46 2010
+@@ -20,7 +20,7 @@
+     {
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = ((int) (datainputstream.readShort()));
+         b = datainputstream.readInt();
+@@ -29,7 +29,7 @@
+         e = datainputstream.read();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeShort(a);
+         dataoutputstream.writeInt(b);
+diff -U 3 minecraft_server.src\ff.java patches\ff.java
+--- minecraft_server.src\ff.java	Sun Oct 17 06:33:32 2010
++++ patches\ff.java	Sat Oct 16 17:12:10 2010
+@@ -525,7 +525,7 @@
+         ar = (new gc(50, 80)).c(0.0F).a(0.9375F).a(f);
+         as = (il)(il)(new il(51, 31)).c(0.0F).a(1.0F).a(f);
+         at = (new ca(52, 65)).c(5F).a(j);
+-        au = ((ff) (new do(53, y)));
++        au = ((ff) (new dofix(53, y)));
+         av = (new b(54)).c(2.5F).a(f);
+         aw = (new dh(55, 84)).c(0.0F).a(e);
+         ax = (new g(56, 50)).c(3F).b(5F).a(i);
+@@ -535,12 +535,12 @@
+         aB = (new fz(60)).c(0.6F).a(g);
+         aC = (new dv(61, false)).c(3.5F).a(i);
+         aD = (new dv(62, true)).c(3.5F).a(i).a(0.875F);
+-        aE = (new fa(63, ig, true)).c(1.0F).a(f);
++        aE = (new fa(63, ig.class, true)).c(1.0F).a(f);
+         aF = (new ie(64, iq.c)).c(3F).a(f);
+         aG = (new cm(65, 83)).c(0.4F).a(f);
+         aH = (new av(66, 128)).c(0.7F).a(j);
+-        aI = ((ff) (new do(67, x)));
+-        aJ = (new fa(68, ig, false)).c(1.0F).a(f);
++        aI = ((ff) (new dofix(67, x)));
++        aJ = (new fa(68, ig.class, false)).c(1.0F).a(f);
+         aK = (new hs(69, 96)).c(0.5F).a(f);
+         aL = (new ax(70, u.bb, cr.b)).c(0.5F).a(i);
+         aM = (new ie(71, iq.e)).c(5F).a(j);
+diff -U 3 minecraft_server.src\fl.java patches\fl.java
+--- minecraft_server.src\fl.java	Sun Oct 17 06:33:32 2010
++++ patches\fl.java	Sat Oct 16 17:12:20 2010
+@@ -21,12 +21,12 @@
+         a = l;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readLong();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeLong(a);
+     }
+diff -U 3 minecraft_server.src\fp.java patches\fp.java
+--- minecraft_server.src\fp.java	Sun Oct 17 06:33:32 2010
++++ patches\fp.java	Sat Oct 16 17:12:33 2010
+@@ -21,13 +21,13 @@
+         a = abyte0;
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeInt(a.length);
+         dataoutput.write(a);
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         int i = datainput.readInt();
+         a = new byte[i];
+diff -U 3 minecraft_server.src\fv.java patches\fv.java
+--- minecraft_server.src\fv.java	Sun Oct 17 06:33:32 2010
++++ patches\fv.java	Sat Oct 16 17:12:42 2010
+@@ -23,13 +23,13 @@
+         b = j;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = ((int) (datainputstream.readShort()));
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeShort(b);
+diff -U 3 minecraft_server.src\fx.java patches\fx.java
+--- minecraft_server.src\fx.java	Sun Oct 17 06:33:32 2010
++++ patches\fx.java	Sat Oct 16 17:12:51 2010
+@@ -15,14 +15,14 @@
+         i = true;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         e = datainputstream.readFloat();
+         f = datainputstream.readFloat();
+         super.a(datainputstream);
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeFloat(e);
+         dataoutputstream.writeFloat(f);
+diff -U 3 minecraft_server.src\gb.java patches\gb.java
+--- minecraft_server.src\gb.java	Sun Oct 17 06:33:32 2010
++++ patches\gb.java	Sat Oct 16 17:12:58 2010
+@@ -16,8 +16,8 @@
+ 
+     gb(co co1)
+     {
+-        a = co1;
+         super();
++        a = co1;
+     }
+ 
+     public java.lang.String format(java.util.logging.LogRecord logrecord)
+diff -U 3 minecraft_server.src\gd.java patches\gd.java
+--- minecraft_server.src\gd.java	Sun Oct 17 06:33:32 2010
++++ patches\gd.java	Sat Oct 16 17:13:06 2010
+@@ -19,8 +19,8 @@
+ 
+     public gd(av av1, dy dy1, int i, int j, int k)
+     {
+-        a = av1;
+         super();
++        a = av1;
+         g = ((java.util.List) (new ArrayList()));
+         b = dy1;
+         c = i;
+diff -U 3 minecraft_server.src\gf.java patches\gf.java
+--- minecraft_server.src\gf.java	Sun Oct 17 06:33:32 2010
++++ patches\gf.java	Sat Oct 16 16:41:45 2010
+@@ -29,12 +29,12 @@
+         ej1.a(this);
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         g = datainputstream.read() != 0;
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.write(g ? 1 : 0);
+     }
+diff -U 3 minecraft_server.src\gg.java patches\gg.java
+--- minecraft_server.src\gg.java	Sun Oct 17 06:33:33 2010
++++ patches\gg.java	Sat Oct 16 16:51:18 2010
+@@ -17,9 +17,9 @@
+         a = null;
+     }
+ 
+-    abstract void a(java.io.DataOutput dataoutput);
++    abstract void a(java.io.DataOutput dataoutput) throws IOException;
+ 
+-    abstract void a(java.io.DataInput datainput);
++    abstract void a(java.io.DataInput datainput) throws IOException;
+ 
+     public abstract byte a();
+ 
+@@ -37,7 +37,7 @@
+         return this;
+     }
+ 
+-    public static gg b(java.io.DataInput datainput)
++    public static gg b(java.io.DataInput datainput) throws IOException
+     {
+         byte byte0 = datainput.readByte();
+         if(byte0 == 0)
+@@ -52,7 +52,7 @@
+         }
+     }
+ 
+-    public static void a(gg gg1, java.io.DataOutput dataoutput)
++    public static void a(gg gg1, java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeByte(((int) (gg1.a())));
+         if(gg1.a() == 0)
+diff -U 3 minecraft_server.src\gk.java patches\gk.java
+--- minecraft_server.src\gk.java	Sun Oct 17 06:33:33 2010
++++ patches\gk.java	Sat Oct 16 17:16:45 2010
+@@ -4,90 +4,45 @@
+ // Source File Name:   SourceFile
+ 
+ 
+-public final class gk extends java.lang.Enum
++public enum gk
+ {
++    a("Kebab", 16, 16, 0, 0),
++    b("Aztec", 16, 16, 16, 0),
++    c("Alban", 16, 16, 32, 0),
++    d("Aztec2", 16, 16, 48, 0),
++    e("Bomb", 16, 16, 64, 0),
++    f("Plant", 16, 16, 80, 0),
++    g("Wasteland", 16, 16, 96, 0),
++    h("Pool", 32, 16, 0, 32),
++    i("Courbet", 32, 16, 32, 32),
++    j("Sea", 32, 16, 64, 32),
++    k("Sunset", 32, 16, 96, 32),
++    l("Creebet", 32, 16, 128, 32),
++    m("Wanderer", 16, 32, 0, 64),
++    n("Graham", 16, 32, 16, 64),
++    o("Match", 32, 32, 0, 128),
++    p("Bust", 32, 32, 32, 128),
++    q("Stage", 32, 32, 64, 128),
++    r("Void", 32, 32, 96, 128),
++    s("SkullAndRoses", 32, 32, 128, 128),
++    t("Fighters", 64, 32, 0, 96),
++    u("Pointer", 64, 64, 0, 192),
++    v("Pigscene", 64, 64, 64, 192),
++    w("Skeleton", 64, 48, 192, 64),
++    x("DonkeyKong", 64, 48, 192, 112);
+ 
+-    public static final gk a;
+-    public static final gk b;
+-    public static final gk c;
+-    public static final gk d;
+-    public static final gk e;
+-    public static final gk f;
+-    public static final gk g;
+-    public static final gk h;
+-    public static final gk i;
+-    public static final gk j;
+-    public static final gk k;
+-    public static final gk l;
+-    public static final gk m;
+-    public static final gk n;
+-    public static final gk o;
+-    public static final gk p;
+-    public static final gk q;
+-    public static final gk r;
+-    public static final gk s;
+-    public static final gk t;
+-    public static final gk u;
+-    public static final gk v;
+-    public static final gk w;
+-    public static final gk x;
+     public final java.lang.String y;
+     public final int z;
+     public final int A;
+     public final int B;
+     public final int C;
+-    private static final gk D[];
+ 
+-    public static gk[] values()
++    private gk(java.lang.String s2, int j1, int k1, int l1, int i2)
+     {
+-        return (gk[])((gk []) (D)).clone();
+-    }
+-
+-    public static gk valueOf(java.lang.String s1)
+-    {
+-        return (gk)java.lang.Enum.valueOf(gk, s1);
+-    }
+-
+-    private gk(java.lang.String s1, int i1, java.lang.String s2, int j1, int k1, int l1, int i2)
+-    {
+-        super(s1, i1);
+         y = s2;
+         z = j1;
+         A = k1;
+         B = l1;
+         C = i2;
+-    }
+-
+-    static 
+-    {
+-        a = new gk("Kebab", 0, "Kebab", 16, 16, 0, 0);
+-        b = new gk("Aztec", 1, "Aztec", 16, 16, 16, 0);
+-        c = new gk("Alban", 2, "Alban", 16, 16, 32, 0);
+-        d = new gk("Aztec2", 3, "Aztec2", 16, 16, 48, 0);
+-        e = new gk("Bomb", 4, "Bomb", 16, 16, 64, 0);
+-        f = new gk("Plant", 5, "Plant", 16, 16, 80, 0);
+-        g = new gk("Wasteland", 6, "Wasteland", 16, 16, 96, 0);
+-        h = new gk("Pool", 7, "Pool", 32, 16, 0, 32);
+-        i = new gk("Courbet", 8, "Courbet", 32, 16, 32, 32);
+-        j = new gk("Sea", 9, "Sea", 32, 16, 64, 32);
+-        k = new gk("Sunset", 10, "Sunset", 32, 16, 96, 32);
+-        l = new gk("Creebet", 11, "Creebet", 32, 16, 128, 32);
+-        m = new gk("Wanderer", 12, "Wanderer", 16, 32, 0, 64);
+-        n = new gk("Graham", 13, "Graham", 16, 32, 16, 64);
+-        o = new gk("Match", 14, "Match", 32, 32, 0, 128);
+-        p = new gk("Bust", 15, "Bust", 32, 32, 32, 128);
+-        q = new gk("Stage", 16, "Stage", 32, 32, 64, 128);
+-        r = new gk("Void", 17, "Void", 32, 32, 96, 128);
+-        s = new gk("SkullAndRoses", 18, "SkullAndRoses", 32, 32, 128, 128);
+-        t = new gk("Fighters", 19, "Fighters", 64, 32, 0, 96);
+-        u = new gk("Pointer", 20, "Pointer", 64, 64, 0, 192);
+-        v = new gk("Pigscene", 21, "Pigscene", 64, 64, 64, 192);
+-        w = new gk("Skeleton", 22, "Skeleton", 64, 48, 192, 64);
+-        x = new gk("DonkeyKong", 23, "DonkeyKong", 64, 48, 192, 112);
+-        D = (new gk[] {
+-            a, b, c, d, e, f, g, h, i, j, 
+-            k, l, m, n, o, p, q, r, s, t, 
+-            u, v, w, x
+-        });
+     }
+ }
+diff -U 3 minecraft_server.src\gr.java patches\gr.java
+--- minecraft_server.src\gr.java	Sun Oct 17 06:33:33 2010
++++ patches\gr.java	Sat Oct 16 17:17:42 2010
+@@ -36,7 +36,7 @@
+             java.lang.Class class1 = (java.lang.Class)a.get(((java.lang.Object) (s1)));
+             if(class1 != null)
+                 dj1 = (dj)class1.getConstructor(new java.lang.Class[] {
+-                    dy
++                    dy.class
+                 }).newInstance(new java.lang.Object[] {
+                     dy1
+                 });
+@@ -56,7 +56,7 @@
+             java.lang.Class class1 = (java.lang.Class)a.get(((java.lang.Object) (s1.h("id"))));
+             if(class1 != null)
+                 dj1 = (dj)class1.getConstructor(new java.lang.Class[] {
+-                    dy
++                    dy.class
+                 }).newInstance(new java.lang.Object[] {
+                     dy1
+                 });
+@@ -84,25 +84,25 @@
+ 
+     static 
+     {
+-        gr.a(di, "Arrow", 10);
+-        gr.a(az, "Snowball", 11);
+-        gr.a(fn, "Item", 1);
+-        gr.a(bu, "Painting", 9);
+-        gr.a(is, "Mob", 48);
+-        gr.a(fg, "Monster", 49);
+-        gr.a(eu, "Creeper", 50);
+-        gr.a(ek, "Skeleton", 51);
+-        gr.a(bk, "Spider", 52);
+-        gr.a(q, "Giant", 53);
+-        gr.a(fm, "Zombie", 54);
+-        gr.a(fh, "Slime", 55);
+-        gr.a(gu, "Pig", 90);
+-        gr.a(cj, "Sheep", 91);
+-        gr.a(ay, "Cow", 91);
+-        gr.a(hi, "Chicken", 91);
+-        gr.a(bx, "PrimedTnt", 20);
+-        gr.a(hc, "FallingSand", 21);
+-        gr.a(ih, "Minecart", 40);
+-        gr.a(es, "Boat", 41);
++        gr.a(di.class, "Arrow", 10);
++        gr.a(az.class, "Snowball", 11);
++        gr.a(fn.class, "Item", 1);
++        gr.a(bu.class, "Painting", 9);
++        gr.a(is.class, "Mob", 48);
++        gr.a(fg.class, "Monster", 49);
++        gr.a(eu.class, "Creeper", 50);
++        gr.a(ek.class, "Skeleton", 51);
++        gr.a(bk.class, "Spider", 52);
++        gr.a(q.class, "Giant", 53);
++        gr.a(fm.class, "Zombie", 54);
++        gr.a(fh.class, "Slime", 55);
++        gr.a(gu.class, "Pig", 90);
++        gr.a(cj.class, "Sheep", 91);
++        gr.a(ay.class, "Cow", 91);
++        gr.a(hi.class, "Chicken", 91);
++        gr.a(bx.class, "PrimedTnt", 20);
++        gr.a(hc.class, "FallingSand", 21);
++        gr.a(ih.class, "Minecart", 40);
++        gr.a(es.class, "Boat", 41);
+     }
+ }
+diff -U 3 minecraft_server.src\gv.java patches\gv.java
+--- minecraft_server.src\gv.java	Sun Oct 17 06:33:33 2010
++++ patches\gv.java	Sat Oct 16 17:18:28 2010
+@@ -33,7 +33,7 @@
+         g = (byte)(int)((is1.s * 256F) / 360F);
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.readByte();
+@@ -44,7 +44,7 @@
+         g = datainputstream.readByte();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeByte(((int) (b)));
+diff -U 3 minecraft_server.src\hc.java patches\hc.java
+--- minecraft_server.src\hc.java	Sun Oct 17 06:33:33 2010
++++ patches\hc.java	Sat Oct 16 21:50:16 2010
+@@ -24,7 +24,7 @@
+         e = true;
+         a(0.98F, 0.98F);
+         C = E / 2.0F;
+-        a(f, f1, f2);
++        a((double)f, (double)f1, (double)f2);
+         o = 0.0D;
+         p = 0.0D;
+         q = 0.0D;
+diff -U 3 minecraft_server.src\hd.java patches\hd.java
+--- minecraft_server.src\hd.java	Sun Oct 17 06:33:33 2010
++++ patches\hd.java	Sat Oct 16 17:18:38 2010
+@@ -20,7 +20,7 @@
+     {
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         e = datainputstream.read();
+         a = datainputstream.readInt();
+@@ -29,7 +29,7 @@
+         d = datainputstream.read();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.write(e);
+         dataoutputstream.writeInt(a);
+diff -U 3 minecraft_server.src\hh.java patches\hh.java
+--- minecraft_server.src\hh.java	Sun Oct 17 06:33:33 2010
++++ patches\hh.java	Sat Oct 16 17:18:48 2010
+@@ -44,7 +44,7 @@
+ 
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.readInt();
+@@ -59,7 +59,7 @@
+         datainputstream.readFully(e);
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeInt(b);
+diff -U 3 minecraft_server.src\hj.java patches\hj.java
+--- minecraft_server.src\hj.java	Sun Oct 17 06:33:33 2010
++++ patches\hj.java	Sat Oct 16 17:18:58 2010
+@@ -25,12 +25,12 @@
+             return;
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeUTF(a);
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         a = datainput.readUTF();
+     }
+diff -U 3 minecraft_server.src\hl.java patches\hl.java
+--- minecraft_server.src\hl.java	Sun Oct 17 06:33:33 2010
++++ patches\hl.java	Sat Oct 16 17:19:04 2010
+@@ -11,8 +11,8 @@
+ 
+     hl(bb bb1)
+     {
+-        a = bb1;
+         super();
++        a = bb1;
+     }
+ 
+     public void run()
+diff -U 3 minecraft_server.src\hm.java patches\hm.java
+--- minecraft_server.src\hm.java	Sun Oct 17 06:33:33 2010
++++ patches\hm.java	Sat Oct 16 17:19:11 2010
+@@ -11,8 +11,8 @@
+ 
+     hm(bb bb1)
+     {
+-        a = bb1;
+         super();
++        a = bb1;
+     }
+ 
+     public void run()
+diff -U 3 minecraft_server.src\hn.java patches\hn.java
+--- minecraft_server.src\hn.java	Sun Oct 17 06:33:33 2010
++++ patches\hn.java	Sun Oct 17 01:19:51 2010
+@@ -11,8 +11,8 @@
+ 
+     hn(bb bb1, java.lang.String s)
+     {
+-        a = bb1;
+         super(s);
++        a = bb1;
+     }
+ 
+     public void run()
+@@ -21,18 +21,16 @@
+         {
+             bb.b++;
+         }
++	    try
++        {
+         for(; bb.a(a) && !bb.b(a); bb.c(a));
+-        synchronized(bb.a)
++	    }
++	    finally
+         {
+-            bb.b--;
+-        }
+-        break MISSING_BLOCK_LABEL_115;
+-        java.lang.Exception exception2;
+-        exception2;
+         synchronized(bb.a)
+         {
+             bb.b--;
+         }
+-        throw exception2;
++	    }
+     }
+ }
+diff -U 3 minecraft_server.src\ho.java patches\ho.java
+--- minecraft_server.src\ho.java	Sun Oct 17 06:33:33 2010
++++ patches\ho.java	Sun Oct 17 01:20:43 2010
+@@ -11,8 +11,8 @@
+ 
+     ho(bb bb1, java.lang.String s)
+     {
+-        a = bb1;
+         super(s);
++        a = bb1;
+     }
+ 
+     public void run()
+@@ -21,18 +21,16 @@
+         {
+             bb.c++;
+         }
++	    try
++        {
+         for(; bb.a(a); bb.d(a));
+-        synchronized(bb.a)
++	    }
++	    finally
+         {
+-            bb.c--;
+-        }
+-        break MISSING_BLOCK_LABEL_105;
+-        java.lang.Exception exception2;
+-        exception2;
+         synchronized(bb.a)
+         {
+             bb.c--;
+         }
+-        throw exception2;
++	    }
+     }
+ }
+diff -U 3 minecraft_server.src\hp.java patches\hp.java
+--- minecraft_server.src\hp.java	Sun Oct 17 06:33:33 2010
++++ patches\hp.java	Sat Oct 16 16:41:58 2010
+@@ -60,7 +60,7 @@
+         return ((java.lang.Integer)b.get(((java.lang.Object) (((java.lang.Object)this).getClass())))).intValue();
+     }
+ 
+-    public static hp b(java.io.DataInputStream datainputstream)
++    public static hp b(java.io.DataInputStream datainputstream) throws IOException
+     {
+         int i = datainputstream.read();
+         if(i == -1)
+@@ -76,15 +76,15 @@
+         }
+     }
+ 
+-    public static void a(hp hp1, java.io.DataOutputStream dataoutputstream)
++    public static void a(hp hp1, java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.write(hp1.b());
+         hp1.a(dataoutputstream);
+     }
+ 
+-    public abstract void a(java.io.DataInputStream datainputstream);
++    public abstract void a(java.io.DataInputStream datainputstream) throws IOException;
+ 
+-    public abstract void a(java.io.DataOutputStream dataoutputstream);
++    public abstract void a(java.io.DataOutputStream dataoutputstream) throws IOException;
+ 
+     public abstract void a(ej ej);
+ 
+@@ -92,38 +92,38 @@
+ 
+     static 
+     {
+-        hp.a(0, iz);
+-        hp.a(1, z);
+-        hp.a(2, e);
+-        hp.a(3, ba);
+-        hp.a(4, fl);
+-        hp.a(5, r);
+-        hp.a(6, cb);
+-        hp.a(10, gf);
+-        hp.a(11, aa);
+-        hp.a(12, fx);
+-        hp.a(13, dq);
+-        hp.a(14, hd);
+-        hp.a(15, fe);
+-        hp.a(16, fv);
+-        hp.a(17, en);
+-        hp.a(18, o);
+-        hp.a(20, c);
+-        hp.a(21, k);
+-        hp.a(22, ce);
+-        hp.a(23, dl);
+-        hp.a(24, gv);
+-        hp.a(29, ct);
+-        hp.a(30, ex);
+-        hp.a(31, dr);
+-        hp.a(32, cx);
+-        hp.a(33, bg);
+-        hp.a(34, cf);
+-        hp.a(50, da);
+-        hp.a(51, cz);
+-        hp.a(52, hh);
+-        hp.a(53, et);
+-        hp.a(59, ib);
+-        hp.a(255, io);
++        hp.a(0, iz.class);
++        hp.a(1, z.class);
++        hp.a(2, e.class);
++        hp.a(3, ba.class);
++        hp.a(4, fl.class);
++        hp.a(5, r.class);
++        hp.a(6, cb.class);
++        hp.a(10, gf.class);
++        hp.a(11, aa.class);
++        hp.a(12, fx.class);
++        hp.a(13, dq.class);
++        hp.a(14, hd.class);
++        hp.a(15, fe.class);
++        hp.a(16, fv.class);
++        hp.a(17, en.class);
++        hp.a(18, o.class);
++        hp.a(20, c.class);
++        hp.a(21, k.class);
++        hp.a(22, ce.class);
++        hp.a(23, dl.class);
++        hp.a(24, gv.class);
++        hp.a(29, ct.class);
++        hp.a(30, ex.class);
++        hp.a(31, dr.class);
++        hp.a(32, cx.class);
++        hp.a(33, bg.class);
++        hp.a(34, cf.class);
++        hp.a(50, da.class);
++        hp.a(51, cz.class);
++        hp.a(52, hh.class);
++        hp.a(53, et.class);
++        hp.a(59, ib.class);
++        hp.a(255, io.class);
+     }
+ }
+diff -U 3 minecraft_server.src\hu.java patches\hu.java
+--- minecraft_server.src\hu.java	Sun Oct 17 06:33:33 2010
++++ patches\hu.java	Sat Oct 16 17:21:00 2010
+@@ -12,8 +12,8 @@
+ 
+     hu(ee ee1, int i, java.lang.Class class1, java.lang.Class aclass[])
+     {
+-        a = ee1;
+         super(i, class1, aclass);
++        a = ee1;
+     }
+ 
+     protected gs a(dy dy1, int i, int j)
+diff -U 3 minecraft_server.src\ib.java patches\ib.java
+--- minecraft_server.src\ib.java	Sun Oct 17 06:33:33 2010
++++ patches\ib.java	Sat Oct 16 17:21:49 2010
+@@ -39,7 +39,7 @@
+         }
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = ((int) (datainputstream.readShort()));
+@@ -50,7 +50,7 @@
+         e = aj.a(d);
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeShort(b);
+diff -U 3 minecraft_server.src\id.java patches\id.java
+--- minecraft_server.src\id.java	Sun Oct 17 06:33:33 2010
++++ patches\id.java	Sun Oct 17 05:57:42 2010
+@@ -310,7 +310,7 @@
+                 b(((hp) (new ba("\247cYou can't /iron again so soon!"))));
+             } else
+             {
+-                net.minecraft.server.MinecraftServer.b.put(((java.lang.Object) (e.aq)), ((java.lang.Object) (java.lang.Integer.valueOf(6000))));
++            	net.minecraft.server.MinecraftServer.b.put(((java.lang.Object) (e.aq)), ((java.lang.Object) (java.lang.Integer.valueOf(6000))));
+                 a.info((new StringBuilder()).append(e.aq).append(" ironed!").toString());
+                 for(int i1 = 0; i1 < 4; i1++)
+                     e.a(new gp(ez.m, 1));
+@@ -325,7 +325,7 @@
+                 b(((hp) (new ba("\247cYou can't /wood again so soon!"))));
+             } else
+             {
+-                net.minecraft.server.MinecraftServer.b.put(((java.lang.Object) (e.aq)), ((java.lang.Object) (java.lang.Integer.valueOf(6000))));
++            	net.minecraft.server.MinecraftServer.b.put(((java.lang.Object) (e.aq)), ((java.lang.Object) (java.lang.Integer.valueOf(6000))));
+                 a.info((new StringBuilder()).append(e.aq).append(" wooded!").toString());
+                 for(int j1 = 0; j1 < 4; j1++)
+                     e.a(new gp(ff.z, 1));
+diff -U 3 minecraft_server.src\iffix.java patches\iffix.java
+--- minecraft_server.src\iffix.java	Sun Oct 17 06:33:33 2010
++++ patches\iffix.java	Sat Oct 16 16:37:16 2010
+@@ -4,13 +4,13 @@
+ // Source File Name:   SourceFile
+ 
+ 
+-public class if
++public class iffix
+ {
+ 
+     private a a[];
+     private int b;
+ 
+-    public if()
++    public iffix()
+     {
+         a = new a[1024];
+         b = 0;
+diff -U 3 minecraft_server.src\io.java patches\io.java
+--- minecraft_server.src\io.java	Sun Oct 17 06:33:33 2010
++++ patches\io.java	Sat Oct 16 17:21:49 2010
+@@ -21,12 +21,12 @@
+         a = s;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readUTF();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeUTF(a);
+     }
+diff -U 3 minecraft_server.src\is.java patches\is.java
+--- minecraft_server.src\is.java	Sun Oct 17 06:33:33 2010
++++ patches\is.java	Sat Oct 16 17:22:37 2010
+@@ -102,7 +102,7 @@
+ 
+     protected boolean g(dj dj1)
+     {
+-        return h.a(aw.b(l, m + (double)p(), n), aw.b(dj1.l, dj1.m + (double)dj1.p(), dj1.n)) == null;
++        return h.a(((aw)null).b(l, m + (double)p(), n), ((aw)null).b(dj1.l, dj1.m + (double)dj1.p(), dj1.n)) == null;
+     }
+ 
+     public boolean c_()
+@@ -645,13 +645,13 @@
+     {
+         if(f1 == 1.0F)
+         {
+-            return aw.b(l, m, n);
++            return ((aw)null).b(l, m, n);
+         } else
+         {
+             double d1 = i + (l - i) * (double)f1;
+             double d2 = j + (m - j) * (double)f1;
+             double d3 = k + (n - k) * (double)f1;
+-            return aw.b(d1, d2, d3);
++            return ((aw)null).b(d1, d2, d3);
+         }
+     }
+ 
+@@ -663,7 +663,7 @@
+             float f4 = gj.a(-r * 0.01745329F - 3.141593F);
+             float f6 = -gj.b(-s * 0.01745329F);
+             float f8 = gj.a(-s * 0.01745329F);
+-            return aw.b(f4 * f6, f8, f2 * f6);
++            return ((aw)null).b(f4 * f6, f8, f2 * f6);
+         } else
+         {
+             float f3 = u + (s - u) * f1;
+@@ -672,7 +672,7 @@
+             float f9 = gj.a(-f5 * 0.01745329F - 3.141593F);
+             float f10 = -gj.b(-f3 * 0.01745329F);
+             float f11 = gj.a(-f3 * 0.01745329F);
+-            return aw.b(f9 * f10, f11, f7 * f10);
++            return ((aw)null).b(f9 * f10, f11, f7 * f10);
+         }
+     }
+ 
+diff -U 3 minecraft_server.src\it.java patches\it.java
+--- minecraft_server.src\it.java	Sun Oct 17 06:33:33 2010
++++ patches\it.java	Sat Oct 16 17:22:50 2010
+@@ -14,8 +14,8 @@
+ 
+     it(hx hx1)
+     {
+-        a = hx1;
+         super();
++        a = hx1;
+     }
+ 
+     public void actionPerformed(java.awt.event.ActionEvent actionevent)
+diff -U 3 minecraft_server.src\k.java patches\k.java
+--- minecraft_server.src\k.java	Sun Oct 17 06:33:34 2010
++++ patches\k.java	Sat Oct 16 17:23:01 2010
+@@ -37,7 +37,7 @@
+         g = (byte)(int)(fn1.q * 128D);
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         h = ((int) (datainputstream.readShort()));
+@@ -50,7 +50,7 @@
+         g = datainputstream.readByte();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeShort(h);
+diff -U 3 minecraft_server.src\l.java patches\l.java
+--- minecraft_server.src\l.java	Sun Oct 17 06:33:34 2010
++++ patches\l.java	Sat Oct 16 17:23:09 2010
+@@ -21,12 +21,12 @@
+         a = f;
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeFloat(a);
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         a = datainput.readFloat();
+     }
+diff -U 3 minecraft_server.src\o.java patches\o.java
+--- minecraft_server.src\o.java	Sun Oct 17 06:33:34 2010
++++ patches\o.java	Sat Oct 16 17:27:18 2010
+@@ -23,13 +23,13 @@
+         b = i;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = ((int) (datainputstream.readByte()));
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeByte(b);
+diff -U 3 minecraft_server.src\r.java patches\r.java
+--- minecraft_server.src\r.java	Sun Oct 17 06:33:34 2010
++++ patches\r.java	Sat Oct 16 17:27:30 2010
+@@ -26,7 +26,7 @@
+ 
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         short word0 = datainputstream.readShort();
+@@ -44,7 +44,7 @@
+ 
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeShort(b.length);
+diff -U 3 minecraft_server.src\s.java patches\s.java
+--- minecraft_server.src\s.java	Sun Oct 17 06:33:34 2010
++++ patches\s.java	Sat Oct 16 17:27:51 2010
+@@ -21,7 +21,7 @@
+         a = ((java.util.Map) (new HashMap()));
+     }
+ 
+-    void a(java.io.DataOutput dataoutput)
++    void a(java.io.DataOutput dataoutput) throws IOException
+     {
+         gg gg1;
+         for(java.util.Iterator iterator = a.values().iterator(); iterator.hasNext(); gg.a(gg1, dataoutput))
+@@ -30,7 +30,7 @@
+         dataoutput.writeByte(0);
+     }
+ 
+-    void a(java.io.DataInput datainput)
++    void a(java.io.DataInput datainput) throws IOException
+     {
+         a.clear();
+         gg gg1;
+diff -U 3 minecraft_server.src\t.java patches\t.java
+--- minecraft_server.src\t.java	Sun Oct 17 06:33:34 2010
++++ patches\t.java	Sun Oct 17 05:57:24 2010
+@@ -14,8 +14,8 @@
+ 
+     t(net.minecraft.server.MinecraftServer minecraftserver)
+     {
+-        a = minecraftserver;
+         super();
++        a = minecraftserver;
+     }
+ 
+     public void windowClosing(java.awt.event.WindowEvent windowevent)
+diff -U 3 minecraft_server.src\v.java patches\v.java
+--- minecraft_server.src\v.java	Sun Oct 17 06:33:34 2010
++++ patches\v.java	Sun Oct 17 05:41:46 2010
+@@ -17,9 +17,9 @@
+ 
+     v(fo fo1, javax.swing.JTextField jtextfield)
+     {
++        super();
+         b = fo1;
+         a = jtextfield;
+-        super();
+     }
+ 
+     public void actionPerformed(java.awt.event.ActionEvent actionevent)
+diff -U 3 minecraft_server.src\w.java patches\w.java
+--- minecraft_server.src\w.java	Sun Oct 17 06:33:34 2010
++++ patches\w.java	Sat Oct 16 17:28:15 2010
+@@ -13,8 +13,8 @@
+ 
+     w(fo fo1)
+     {
+-        a = fo1;
+         super();
++        a = fo1;
+     }
+ 
+     public void focusGained(java.awt.event.FocusEvent focusevent)
+diff -U 3 minecraft_server.src\z.java patches\z.java
+--- minecraft_server.src\z.java	Sun Oct 17 06:33:34 2010
++++ patches\z.java	Sat Oct 16 17:28:25 2010
+@@ -25,14 +25,14 @@
+         a = i;
+     }
+ 
+-    public void a(java.io.DataInputStream datainputstream)
++    public void a(java.io.DataInputStream datainputstream) throws IOException
+     {
+         a = datainputstream.readInt();
+         b = datainputstream.readUTF();
+         c = datainputstream.readUTF();
+     }
+ 
+-    public void a(java.io.DataOutputStream dataoutputstream)
++    public void a(java.io.DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(a);
+         dataoutputstream.writeUTF(b);

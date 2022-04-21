@@ -1,0 +1,583 @@
+diff -U 3 minecraft_server.src\ae.java patches\ae.java
+--- minecraft_server.src\ae.java	Tue Oct 19 01:22:09 2010
++++ patches\ae.java	Wed Oct 20 20:39:36 2010
+@@ -6,7 +6,7 @@
+ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.Set;
+-import net.minecraft.server.MinecraftServer;
++//import MinecraftServer;
+ 
+ class ae
+ {
+diff -U 3 minecraft_server.src\bm.java patches\bm.java
+--- minecraft_server.src\bm.java	Tue Oct 19 01:22:09 2010
++++ patches\bm.java	Wed Oct 20 20:39:36 2010
+@@ -3,14 +3,14 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-import net.minecraft.server.MinecraftServer;
++//import MinecraftServer;
+ 
+ public final class bm extends java.lang.Thread
+ {
+ 
+-    final net.minecraft.server.MinecraftServer a;
++    final MinecraftServer a;
+ 
+-    public bm(java.lang.String s, net.minecraft.server.MinecraftServer minecraftserver)
++    public bm(java.lang.String s, MinecraftServer minecraftserver)
+     {
+         super(s);
+         a = minecraftserver;
+diff -U 3 minecraft_server.src\bp.java patches\bp.java
+--- minecraft_server.src\bp.java	Tue Oct 19 01:22:09 2010
++++ patches\bp.java	Wed Oct 20 20:39:36 2010
+@@ -3,14 +3,14 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-import net.minecraft.server.MinecraftServer;
++//import MinecraftServer;
+ 
+ public class bp extends java.lang.Thread
+ {
+ 
+-    final net.minecraft.server.MinecraftServer a;
++    final MinecraftServer a;
+ 
+-    public bp(net.minecraft.server.MinecraftServer minecraftserver)
++    public bp(MinecraftServer minecraftserver)
+     {
+         super();
+         a = minecraftserver;
+diff -U 3 minecraft_server.src\cu.java patches\cu.java
+--- minecraft_server.src\cu.java	Tue Oct 19 01:22:09 2010
++++ patches\cu.java	Wed Oct 20 20:39:36 2010
+@@ -5,15 +5,15 @@
+ 
+ import java.io.IOException;
+ import java.net.ServerSocket;
+-import net.minecraft.server.MinecraftServer;
++//import MinecraftServer;
+ 
+ class cu extends java.lang.Thread
+ {
+ 
+-    final net.minecraft.server.MinecraftServer a;
++    final MinecraftServer a;
+     final dc b;
+ 
+-    cu(dc dc1, java.lang.String s, net.minecraft.server.MinecraftServer minecraftserver)
++    cu(dc dc1, java.lang.String s, MinecraftServer minecraftserver)
+     {
+         super(s);
+         b = dc1;
+diff -U 3 minecraft_server.src\dc.java patches\dc.java
+--- minecraft_server.src\dc.java	Tue Oct 19 01:22:09 2010
++++ patches\dc.java	Wed Oct 20 20:39:36 2010
+@@ -9,7 +9,7 @@
+ import java.util.ArrayList;
+ import java.util.logging.Level;
+ import java.util.logging.Logger;
+-import net.minecraft.server.MinecraftServer;
++//import MinecraftServer;
+ 
+ public class dc
+ {
+diff -U 3 minecraft_server.src\ea.java patches\ea.java
+--- minecraft_server.src\ea.java	Tue Oct 19 01:22:08 2010
++++ patches\ea.java	Wed Oct 20 20:39:36 2010
+@@ -8,13 +8,13 @@
+ import java.util.List;
+ import java.util.Random;
+ import java.util.Set;
+-import net.minecraft.server.MinecraftServer;
++//import MinecraftServer;
+ 
+ public class ea extends fc
+ {
+ 
+     public id a;
+-    public net.minecraft.server.MinecraftServer b;
++    public MinecraftServer b;
+     public in ad;
+     public double ae;
+     public double af;
+@@ -22,7 +22,7 @@
+     public java.util.Set ah;
+     public double ai;
+ 
+-    public ea(net.minecraft.server.MinecraftServer minecraftserver, dy dy1, java.lang.String s, in in1)
++    public ea(MinecraftServer minecraftserver, dy dy1, java.lang.String s, in in1)
+     {
+         super(dy1);
+         ag = ((java.util.List) (new LinkedList()));
+diff -U 3 minecraft_server.src\eb.java patches\eb.java
+--- minecraft_server.src\eb.java	Tue Oct 19 01:22:08 2010
++++ patches\eb.java	Wed Oct 20 20:39:36 2010
+@@ -3,15 +3,15 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-import net.minecraft.server.MinecraftServer;
++//import MinecraftServer;
+ 
+ public class eb
+     implements be
+ {
+ 
+-    private net.minecraft.server.MinecraftServer a;
++    private MinecraftServer a;
+ 
+-    public eb(net.minecraft.server.MinecraftServer minecraftserver)
++    public eb(MinecraftServer minecraftserver)
+     {
+         a = minecraftserver;
+     }
+diff -U 3 minecraft_server.src\ew.java patches\ew.java
+--- minecraft_server.src\ew.java	Tue Oct 19 01:22:09 2010
++++ patches\ew.java	Wed Oct 20 20:39:36 2010
+@@ -7,7 +7,7 @@
+ import java.net.Socket;
+ import java.util.Random;
+ import java.util.logging.Logger;
+-import net.minecraft.server.MinecraftServer;
++//import MinecraftServer;
+ 
+ public class ew extends ej
+ {
+@@ -16,13 +16,13 @@
+     private static java.util.Random d = new Random();
+     public bb b;
+     public boolean c;
+-    private net.minecraft.server.MinecraftServer e;
++    private MinecraftServer e;
+     private int f;
+     private java.lang.String g;
+     private z h;
+     private java.lang.String i;
+ 
+-    public ew(net.minecraft.server.MinecraftServer minecraftserver, java.net.Socket socket, java.lang.String s) throws IOException
++    public ew(MinecraftServer minecraftserver, java.net.Socket socket, java.lang.String s) throws IOException
+     {
+         c = false;
+         f = 0;
+diff -U 3 minecraft_server.src\fo.java patches\fo.java
+--- minecraft_server.src\fo.java	Tue Oct 19 01:22:08 2010
++++ patches\fo.java	Wed Oct 20 20:39:36 2010
+@@ -15,16 +15,16 @@
+ import javax.swing.UIManager;
+ import javax.swing.border.EtchedBorder;
+ import javax.swing.border.TitledBorder;
+-import net.minecraft.server.MinecraftServer;
++//import MinecraftServer;
+ 
+ public class fo extends javax.swing.JComponent
+     implements ef
+ {
+ 
+     public static java.util.logging.Logger a = java.util.logging.Logger.getLogger("Minecraft");
+-    private net.minecraft.server.MinecraftServer b;
++    private MinecraftServer b;
+ 
+-    public static void a(net.minecraft.server.MinecraftServer minecraftserver)
++    public static void a(MinecraftServer minecraftserver)
+     {
+         try
+         {
+@@ -40,7 +40,7 @@
+         jframe.addWindowListener(((java.awt.event.WindowListener) (new t(minecraftserver))));
+     }
+ 
+-    public fo(net.minecraft.server.MinecraftServer minecraftserver)
++    public fo(MinecraftServer minecraftserver)
+     {
+         b = minecraftserver;
+         setPreferredSize(new Dimension(854, 480));
+@@ -99,7 +99,7 @@
+         return "CONSOLE";
+     }
+ 
+-    static net.minecraft.server.MinecraftServer a(fo fo1)
++    static MinecraftServer a(fo fo1)
+     {
+         return fo1.b;
+     }
+diff -U 3 minecraft_server.src\ft.java patches\ft.java
+--- minecraft_server.src\ft.java	Tue Oct 19 01:22:08 2010
++++ patches\ft.java	Wed Oct 20 20:39:36 2010
+@@ -14,14 +14,14 @@
+ import java.util.List;
+ import java.util.Set;
+ import java.util.logging.Logger;
+-import net.minecraft.server.MinecraftServer;
++//import MinecraftServer;
+ 
+ public class ft
+ {
+ 
+     public static java.util.logging.Logger a = java.util.logging.Logger.getLogger("Minecraft");
+     public java.util.List b;
+-    private net.minecraft.server.MinecraftServer c;
++    private MinecraftServer c;
+     private hg d;
+     private int e;
+     private java.util.Set f;
+@@ -32,7 +32,7 @@
+     private java.io.File k;
+     private cl l;
+ 
+-    public ft(net.minecraft.server.MinecraftServer minecraftserver)
++    public ft(MinecraftServer minecraftserver)
+     {
+         b = ((java.util.List) (new ArrayList()));
+         f = ((java.util.Set) (new HashSet()));
+diff -U 3 minecraft_server.src\fw.java patches\fw.java
+--- minecraft_server.src\fw.java	Tue Oct 19 01:22:08 2010
++++ patches\fw.java	Wed Oct 20 20:39:36 2010
+@@ -8,17 +8,17 @@
+ import java.util.Iterator;
+ import java.util.List;
+ import java.util.Set;
+-import net.minecraft.server.MinecraftServer;
++//import MinecraftServer;
+ 
+ public class fw
+ {
+ 
+     private java.util.Set a;
+     private hf b;
+-    private net.minecraft.server.MinecraftServer c;
++    private MinecraftServer c;
+     private int d;
+ 
+-    public fw(net.minecraft.server.MinecraftServer minecraftserver)
++    public fw(MinecraftServer minecraftserver)
+     {
+         a = ((java.util.Set) (new HashSet()));
+         b = new hf();
+diff -U 3 minecraft_server.src\h.java patches\h.java
+--- minecraft_server.src\h.java	Tue Oct 19 01:22:08 2010
++++ patches\h.java	Wed Oct 20 20:39:36 2010
+@@ -6,16 +6,16 @@
+ import java.util.List;
+ import java.util.Vector;
+ import javax.swing.JList;
+-import net.minecraft.server.MinecraftServer;
++//import MinecraftServer;
+ 
+ public class h extends javax.swing.JList
+     implements dw
+ {
+ 
+-    private net.minecraft.server.MinecraftServer a;
++    private MinecraftServer a;
+     private int b;
+ 
+-    public h(net.minecraft.server.MinecraftServer minecraftserver)
++    public h(MinecraftServer minecraftserver)
+     {
+         b = 0;
+         a = minecraftserver;
+diff -U 3 minecraft_server.src\hg.java patches\hg.java
+--- minecraft_server.src\hg.java	Tue Oct 19 01:22:08 2010
++++ patches\hg.java	Wed Oct 20 20:39:36 2010
+@@ -5,7 +5,7 @@
+ 
+ import java.util.ArrayList;
+ import java.util.List;
+-import net.minecraft.server.MinecraftServer;
++//import MinecraftServer;
+ 
+ public class hg
+ {
+@@ -13,9 +13,9 @@
+     private java.util.List a;
+     private el b;
+     private java.util.List c;
+-    private net.minecraft.server.MinecraftServer d;
++    private MinecraftServer d;
+ 
+-    public hg(net.minecraft.server.MinecraftServer minecraftserver)
++    public hg(MinecraftServer minecraftserver)
+     {
+         a = ((java.util.List) (new ArrayList()));
+         b = new el();
+@@ -145,7 +145,7 @@
+         return 144;
+     }
+ 
+-    static net.minecraft.server.MinecraftServer a(hg hg1)
++    static MinecraftServer a(hg hg1)
+     {
+         return hg1.d;
+     }
+diff -U 3 minecraft_server.src\id.java patches\id.java
+--- minecraft_server.src\id.java	Tue Oct 19 01:22:09 2010
++++ patches\id.java	Wed Oct 20 20:39:36 2010
+@@ -6,7 +6,7 @@
+ import java.util.HashMap;
+ import java.util.List;
+ import java.util.logging.Logger;
+-import net.minecraft.server.MinecraftServer;
++//import MinecraftServer;
+ 
+ public class id extends ej
+     implements ef
+@@ -15,7 +15,7 @@
+     public static java.util.logging.Logger a = java.util.logging.Logger.getLogger("Minecraft");
+     public bb b;
+     public boolean c;
+-    private net.minecraft.server.MinecraftServer d;
++    private MinecraftServer d;
+     private ea e;
+     private int f;
+     private double g;
+@@ -24,7 +24,7 @@
+     private boolean j;
+     private gp k;
+ 
+-    public id(net.minecraft.server.MinecraftServer minecraftserver, bb bb1, ea ea1)
++    public id(MinecraftServer minecraftserver, bb bb1, ea ea1)
+     {
+         c = false;
+         f = 0;
+@@ -304,13 +304,13 @@
+         } else
+         if(s.toLowerCase().equalsIgnoreCase("/iron"))
+         {
+-            if(net.minecraft.server.MinecraftServer.b.containsKey(((java.lang.Object) (e.aq))))
++            if(MinecraftServer.b.containsKey(((java.lang.Object) (e.aq))))
+             {
+                 a.info((new StringBuilder()).append(e.aq).append(" failed to iron!").toString());
+                 b(((hp) (new ba("\247cYou can't /iron again so soon!"))));
+             } else
+             {
+-            	net.minecraft.server.MinecraftServer.b.put(((java.lang.Object) (e.aq)), ((java.lang.Object) (java.lang.Integer.valueOf(6000))));
++                MinecraftServer.b.put(((java.lang.Object) (e.aq)), ((java.lang.Object) (java.lang.Integer.valueOf(6000))));
+                 a.info((new StringBuilder()).append(e.aq).append(" ironed!").toString());
+                 for(int i1 = 0; i1 < 4; i1++)
+                     e.a(new gp(ez.m, 1));
+@@ -319,13 +319,13 @@
+         } else
+         if(s.toLowerCase().equalsIgnoreCase("/wood"))
+         {
+-            if(net.minecraft.server.MinecraftServer.b.containsKey(((java.lang.Object) (e.aq))))
++            if(MinecraftServer.b.containsKey(((java.lang.Object) (e.aq))))
+             {
+                 a.info((new StringBuilder()).append(e.aq).append(" failed to wood!").toString());
+                 b(((hp) (new ba("\247cYou can't /wood again so soon!"))));
+             } else
+             {
+-            	net.minecraft.server.MinecraftServer.b.put(((java.lang.Object) (e.aq)), ((java.lang.Object) (java.lang.Integer.valueOf(6000))));
++                MinecraftServer.b.put(((java.lang.Object) (e.aq)), ((java.lang.Object) (java.lang.Integer.valueOf(6000))));
+                 a.info((new StringBuilder()).append(e.aq).append(" wooded!").toString());
+                 for(int j1 = 0; j1 < 4; j1++)
+                     e.a(new gp(ff.z, 1));
+diff -U 3 minecraft_server.src\MinecraftServer.java patches\MinecraftServer.java
+--- minecraft_server.src\MinecraftServer.java	Wed Oct 20 21:02:31 2010
++++ patches\MinecraftServer.java	Wed Oct 20 20:39:36 2010
+@@ -3,36 +3,37 @@
+ // Decompiler options: fullnames deadcode fieldsfirst safe 
+ // Source File Name:   SourceFile
+ 
+-package net.minecraft.server;
++//package net.minecraft.server;
+ 
+-import ai;
+-import aw;
+-import ba;
+-import bm;
+-import bn;
+-import bp;
+-import cq;
+-import dc;
+-import dg;
+-import dw;
+-import ea;
+-import eb;
+-import ee;
+-import ef;
+-import ez;
+-import fk;
+-import fl;
+-import fo;
+-import ft;
+-import fw;
+-import gp;
+-import id;
+-import ij;
++//import ai;
++//import aw;
++//import ba;
++//import bm;
++//import bn;
++//import bp;
++//import cq;
++//import dc;
++//import dg;
++//import dw;
++//import ea;
++//import eb;
++//import ee;
++//import ef;
++//import ez;
++//import fk;
++//import fl;
++//import fo;
++//import ft;
++//import fw;
++//import gp;
++//import id;
++//import ij;
+ import java.awt.GraphicsEnvironment;
+ import java.io.File;
+ import java.io.IOException;
+ import java.io.PrintStream;
+ import java.net.InetAddress;
++import java.net.UnknownHostException;
+ import java.util.ArrayList;
+ import java.util.Collections;
+ import java.util.HashMap;
+@@ -71,7 +72,7 @@
+         new bp(this);
+     }
+ 
+-    private boolean d()
++    private boolean d() throws UnknownHostException
+     {
+         bn bn1 = new bn(this);
+         ((java.lang.Thread) (bn1)).setDaemon(true);
+@@ -177,6 +178,8 @@
+ 
+     public void run()
+     {
++        try
++        {
+         if(d())
+         {
+             long l1 = java.lang.System.currentTimeMillis();
+@@ -219,12 +222,9 @@
+                 }
+             }
+         }
+-        g();
+-        g = true;
+-        java.lang.System.exit(0);
+-        break MISSING_BLOCK_LABEL_233;
+-        java.lang.Exception exception;
+-        exception;
++        }
++        catch (java.lang.Exception exception)
++        {
+         exception.printStackTrace();
+         a.log(java.util.logging.Level.SEVERE, "Unexpected exception", ((java.lang.Throwable) (exception)));
+         while(m) 
+@@ -239,16 +239,13 @@
+                 interruptedexception1.printStackTrace();
+             }
+         }
++        }
++        finally
++        {
+         g();
+         g = true;
+         java.lang.System.exit(0);
+-        break MISSING_BLOCK_LABEL_233;
+-        java.lang.Exception exception1;
+-        exception1;
+-        g();
+-        g = true;
+-        java.lang.System.exit(0);
+-        throw exception1;
++        }
+     }
+ 
+     private void h()
+@@ -526,7 +523,7 @@
+     {
+         try
+         {
+-            net.minecraft.server.MinecraftServer minecraftserver = new MinecraftServer();
++            MinecraftServer minecraftserver = new MinecraftServer();
+             if(!java.awt.GraphicsEnvironment.isHeadless() && (args.length <= 0 || !args[0].equals("nogui")))
+                 fo.a(minecraftserver);
+             (new bm("Server thread", minecraftserver)).start();
+@@ -552,7 +549,7 @@
+         return "CONSOLE";
+     }
+ 
+-    public static boolean a(net.minecraft.server.MinecraftServer minecraftserver)
++    public static boolean a(MinecraftServer minecraftserver)
+     {
+         return minecraftserver.m;
+     }
+diff -U 3 minecraft_server.src\t.java patches\t.java
+--- minecraft_server.src\t.java	Tue Oct 19 01:22:09 2010
++++ patches\t.java	Wed Oct 20 20:39:36 2010
+@@ -5,14 +5,14 @@
+ 
+ import java.awt.event.WindowAdapter;
+ import java.awt.event.WindowEvent;
+-import net.minecraft.server.MinecraftServer;
++//import MinecraftServer;
+ 
+ final class t extends java.awt.event.WindowAdapter
+ {
+ 
+-    final net.minecraft.server.MinecraftServer a;
++    final MinecraftServer a;
+ 
+-    t(net.minecraft.server.MinecraftServer minecraftserver)
++    t(MinecraftServer minecraftserver)
+     {
+         super();
+         a = minecraftserver;
+diff -U 3 minecraft_server.src\v.java patches\v.java
+--- minecraft_server.src\v.java	Tue Oct 19 01:22:09 2010
++++ patches\v.java	Wed Oct 20 20:39:36 2010
+@@ -6,7 +6,7 @@
+ import java.awt.event.ActionEvent;
+ import java.awt.event.ActionListener;
+ import javax.swing.JTextField;
+-import net.minecraft.server.MinecraftServer;
++//import MinecraftServer;
+ 
+ class v
+     implements java.awt.event.ActionListener
+diff -U 3 minecraft_server.src\bn.java patches\bn.java
+--- minecraft_server.src\bn.java	Wed Oct 20 22:31:21 2010
++++ patches\bn.java	Wed Oct 20 22:27:28 2010
+@@ -6,17 +6,17 @@
+ import java.io.BufferedReader;
+ import java.io.IOException;
+ import java.io.InputStreamReader;
+-import net.minecraft.server.MinecraftServer;
++//import MinecraftServer;
+ 
+ public class bn extends java.lang.Thread
+ {
+ 
+-    final net.minecraft.server.MinecraftServer a;
++    final MinecraftServer a;
+ 
+-    public bn(net.minecraft.server.MinecraftServer minecraftserver)
++    public bn(MinecraftServer minecraftserver)
+     {
+-        a = minecraftserver;
+         super();
++        a = minecraftserver;
+     }
+ 
+     public void run()
+@@ -25,7 +25,7 @@
+         java.lang.String s = null;
+         try
+         {
+-            while(!a.g && net.minecraft.server.MinecraftServer.a(a) && (s = bufferedreader.readLine()) != null) 
++            while(!a.g && MinecraftServer.a(a) && (s = bufferedreader.readLine()) != null) 
+                 a.a(s, ((ef) (a)));
+         }
+         catch(java.io.IOException ioexception)
