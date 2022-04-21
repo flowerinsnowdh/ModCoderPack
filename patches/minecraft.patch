@@ -1,0 +1,2844 @@
+diff -U 3 minecraft\aa.java patched\aa.java
+--- minecraft\aa.java	Sat Oct 23 15:49:51 2010
++++ patched\aa.java	Sat Oct 23 14:38:58 2010
+@@ -5,7 +5,7 @@
+ import java.awt.image.BufferedImage;
+ import java.io.IOException;
+ import javax.imageio.ImageIO;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class aa extends z
+ {
+@@ -20,7 +20,7 @@
+         field_1128_f = 1;
+         try
+         {
+-            BufferedImage bufferedimage = ImageIO.read((net.minecraft.client.Minecraft.class).getResource("/gui/items.png"));
++            BufferedImage bufferedimage = ImageIO.read(Minecraft.class.getResource("/gui/items.png"));
+             int i = (field_1126_b % 16) * 16;
+             int j = (field_1126_b / 16) * 16;
+             bufferedimage.getRGB(i, j, 16, 16, field_1150_j, 0, 16);
+diff -U 3 minecraft\ab.java patched\ab.java
+--- minecraft\ab.java	Sat Oct 23 15:49:51 2010
++++ patched\ab.java	Sat Oct 23 14:43:44 2010
+@@ -206,7 +206,7 @@
+         ho1.func_982_a();
+     }
+ 
+-    public volatile void func_147_a(kh kh, double d, double d1, double d2, 
++    public void func_147_a(kh kh, double d, double d1, double d2, 
+             float f, float f1)
+     {
+         func_165_a((dx)kh, d, d1, d2, f, f1);
+diff -U 3 minecraft\af.java patched\af.java
+--- minecraft\af.java	Sat Oct 23 15:49:51 2010
++++ patched\af.java	Sat Oct 23 15:23:22 2010
+@@ -7,11 +7,11 @@
+ public interface af
+ {
+ 
+-    public abstract ga func_813_a(cn cn, int i, int j);
++    public abstract ga func_813_a(cn cn, int i, int j) throws IOException;
+ 
+-    public abstract void func_812_a(cn cn, ga ga);
++    public abstract void func_812_a(cn cn, ga ga) throws IOException;
+ 
+-    public abstract void func_815_b(cn cn, ga ga);
++    public abstract void func_815_b(cn cn, ga ga) throws IOException;
+ 
+     public abstract void func_814_a();
+ 
+diff -U 3 minecraft\au.java patched\au.java
+--- minecraft\au.java	Sat Oct 23 15:49:51 2010
++++ patched\au.java	Sat Oct 23 14:38:55 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public class au extends bh
+diff -U 3 minecraft\ay.java patched\ay.java
+--- minecraft\ay.java	Sat Oct 23 15:49:51 2010
++++ patched\ay.java	Sat Oct 23 14:38:55 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class ay extends bh
+ {
+diff -U 3 minecraft\bf.java patched\bf.java
+--- minecraft\bf.java	Sat Oct 23 15:49:51 2010
++++ patched\bf.java	Sat Oct 23 14:45:22 2010
+@@ -6,7 +6,7 @@
+ import java.net.URL;
+ import javax.xml.parsers.DocumentBuilder;
+ import javax.xml.parsers.DocumentBuilderFactory;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.w3c.dom.*;
+ 
+ public class bf extends Thread
+@@ -133,7 +133,7 @@
+         }
+     }
+ 
+-    private void func_1212_a(URL url, File file, long l)
++    private void func_1212_a(URL url, File file, long l) throws IOException
+     {
+         byte abyte0[] = new byte[4096];
+         DataInputStream datainputstream = new DataInputStream(url.openStream());
+diff -U 3 minecraft\bh.java patched\bh.java
+--- minecraft\bh.java	Sat Oct 23 15:49:51 2010
++++ patched\bh.java	Sat Oct 23 14:38:55 2010
+@@ -7,7 +7,7 @@
+ import java.awt.datatransfer.DataFlavor;
+ import java.awt.datatransfer.Transferable;
+ import java.util.ArrayList;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.input.Keyboard;
+ import org.lwjgl.input.Mouse;
+ import org.lwjgl.opengl.GL11;
+diff -U 3 minecraft\bi.java patched\bi.java
+--- minecraft\bi.java	Sat Oct 23 15:49:51 2010
++++ patched\bi.java	Sat Oct 23 14:38:55 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.io.PrintStream;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class bi extends dm
+ {
+diff -U 3 minecraft\bm.java patched\bm.java
+--- minecraft\bm.java	Sat Oct 23 15:49:51 2010
++++ patched\bm.java	Sat Oct 23 14:45:22 2010
+@@ -11,13 +11,13 @@
+     {
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_581_a = datainputstream.readInt();
+         field_580_b = datainputstream.readInt();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_581_a);
+         dataoutputstream.writeInt(field_580_b);
+diff -U 3 minecraft\bu.java patched\bu.java
+--- minecraft\bu.java	Sat Oct 23 15:49:51 2010
++++ patched\bu.java	Sat Oct 23 14:43:44 2010
+@@ -138,28 +138,28 @@
+         field_209_f.field_1283_d.func_922_a(0.0625F);
+     }
+ 
+-    protected volatile void func_168_a(ge ge, float f)
++    protected void func_168_a(ge ge, float f)
+     {
+         func_186_b((dm)ge, f);
+     }
+ 
+-    protected volatile boolean func_166_a(ge ge, int i)
++    protected boolean func_166_a(ge ge, int i)
+     {
+         return func_187_a((dm)ge, i);
+     }
+ 
+-    protected volatile void func_174_b(ge ge, float f)
++    protected void func_174_b(ge ge, float f)
+     {
+         func_189_a((dm)ge, f);
+     }
+ 
+-    public volatile void func_171_a(ge ge, double d, double d1, double d2, 
++    public void func_171_a(ge ge, double d, double d1, double d2, 
+             float f, float f1)
+     {
+         func_188_a((dm)ge, d, d1, d2, f, f1);
+     }
+ 
+-    public volatile void func_147_a(kh kh, double d, double d1, double d2, 
++    public void func_147_a(kh kh, double d, double d1, double d2, 
+             float f, float f1)
+     {
+         func_188_a((dm)kh, d, d1, d2, f, f1);
+diff -U 3 minecraft\bw.java patched\bw.java
+--- minecraft\bw.java	Sat Oct 23 15:49:51 2010
++++ patched\bw.java	Sat Oct 23 14:43:44 2010
+@@ -125,7 +125,7 @@
+         GL11.glColor3f(f2, f2, f2);
+     }
+ 
+-    public volatile void func_147_a(kh kh, double d, double d1, double d2, 
++    public void func_147_a(kh kh, double d, double d1, double d2, 
+             float f, float f1)
+     {
+         func_158_a((jc)kh, d, d1, d2, f, f1);
+diff -U 3 minecraft\by.java patched\by.java
+--- minecraft\by.java	Sat Oct 23 15:49:51 2010
++++ patched\by.java	Sat Oct 23 14:46:25 2010
+@@ -3,9 +3,12 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ 
+-public final class by extends Enum
++public enum by
+ {
++    Sky(15),
++    Block(0);
+ 
++/*
+     public static by[] func_1181_values()
+     {
+         return (by[])field_1721_d.clone();
+@@ -15,18 +18,18 @@
+     {
+         return (by)Enum.valueOf(by.class, s);
+     }
+-
+-    private by(String s, int i, int j)
++*/
++    private by(int j)
+     {
+-        super(s, i);
+         field_1722_c = j;
+     }
+-
++/*
+     public static final by Sky;
+     public static final by Block;
++*/
+     public final int field_1722_c;
+-    private static final by field_1721_d[]; /* synthetic field */
+-
++//    private static final by field_1721_d[]; /* synthetic field */
++/*
+     static 
+     {
+         Sky = new by("Sky", 0, 15);
+@@ -35,4 +38,5 @@
+             Sky, Block
+         });
+     }
++*/
+ }
+diff -U 3 minecraft\bz.java patched\bz.java
+--- minecraft\bz.java	Sat Oct 23 15:49:51 2010
++++ patched\bz.java	Sat Oct 23 14:52:11 2010
+@@ -14,7 +14,7 @@
+         field_472_j = true;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_573_a = datainputstream.readInt();
+         field_572_b = datainputstream.readShort();
+@@ -42,7 +42,7 @@
+         }
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_573_a);
+         dataoutputstream.writeShort(field_572_b);
+diff -U 3 minecraft\ch.java patched\ch.java
+--- minecraft\ch.java	Sat Oct 23 15:49:51 2010
++++ patched\ch.java	Sat Oct 23 14:52:11 2010
+@@ -26,7 +26,7 @@
+         field_554_h = true;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_561_a = datainputstream.readDouble();
+         field_560_b = datainputstream.readDouble();
+@@ -37,7 +37,7 @@
+         super.func_327_a(datainputstream);
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeDouble(field_561_a);
+         dataoutputstream.writeDouble(field_560_b);
+diff -U 3 minecraft\cj.java patched\cj.java
+--- minecraft\cj.java	Sat Oct 23 15:49:51 2010
++++ patched\cj.java	Sat Oct 23 14:38:55 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class cj extends bh
+ {
+diff -U 3 minecraft\cp.java patched\cp.java
+--- minecraft\cp.java	Sat Oct 23 15:49:52 2010
++++ patched\cp.java	Sat Oct 23 14:43:44 2010
+@@ -39,7 +39,7 @@
+         GL11.glPopMatrix();
+     }
+ 
+-    public volatile void func_147_a(kh kh, double d, double d1, double d2, 
++    public void func_147_a(kh kh, double d, double d1, double d2, 
+             float f, float f1)
+     {
+         func_157_a((dc)kh, d, d1, d2, f, f1);
+diff -U 3 minecraft\cx.java patched\cx.java
+--- minecraft\cx.java	Sat Oct 23 15:49:52 2010
++++ patched\cx.java	Sat Oct 23 14:38:55 2010
+@@ -5,7 +5,7 @@
+ import java.io.BufferedReader;
+ import java.io.InputStreamReader;
+ import java.util.*;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.opengl.GL11;
+ import org.lwjgl.util.glu.GLU;
+ 
+diff -U 3 minecraft\d.java patched\d.java
+--- minecraft\d.java	Sat Oct 23 15:49:52 2010
++++ patched\d.java	Sat Oct 23 14:43:44 2010
+@@ -55,12 +55,12 @@
+         return i << 24 | c << 16 | c1 << 8 | c2;
+     }
+ 
+-    protected volatile void func_168_a(ge ge, float f)
++    protected void func_168_a(ge ge, float f)
+     {
+         func_184_a((dd)ge, f);
+     }
+ 
+-    protected volatile int func_173_a(ge ge, float f, float f1)
++    protected int func_173_a(ge ge, float f, float f1)
+     {
+         return func_183_a((dd)ge, f, f1);
+     }
+diff -U 3 minecraft\de.java patched\de.java
+--- minecraft\de.java	Sat Oct 23 15:49:52 2010
++++ patched\de.java	Sat Oct 23 15:29:36 2010
+@@ -2,7 +2,7 @@
+ // Jad home page: http://www.kpdus.com/jad.html
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.input.Keyboard;
+ 
+ public class de extends bh
+@@ -50,18 +50,8 @@
+         {
+             field_985_a = field_985_a.substring(0, field_985_a.length() - 1);
+         }
+-        if(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_'abcdefghijklmnopqrstuvwxyz{|}~\u2302\307\374\351\342\344\340\345\347\352\353\350\357\356\354\304\305\311\346\306\364\366\362\373\371\377\326\334\370\243\330\327\u0192\341\355\363\372\361\321\252\272\277\256\254\275\274\241\253\273".indexOf(c) < 0 || field_985_a.length() >= 100) goto _L2; else goto _L1
+-_L1:
+-        new StringBuilder();
+-        this;
+-        JVM INSTR dup_x1 ;
+-        field_985_a;
+-        append();
+-        c;
+-        append();
+-        toString();
+-        field_985_a;
+-_L2:
++        if(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_'abcdefghijklmnopqrstuvwxyz{|}~\u2302\307\374\351\342\344\340\345\347\352\353\350\357\356\354\304\305\311\346\306\364\366\362\373\371\377\326\334\370\243\330\327\u0192\341\355\363\372\361\321\252\272\277\256\254\275\274\241\253\273".indexOf(c) >= 0 && field_985_a.length() < 100)
++        	field_985_a += c;
+     }
+ 
+     public void func_571_a(int i, int j, float f)
+@@ -74,29 +64,13 @@
+     {
+         if(k != 0 || field_945_b.field_164_u.field_933_a == null)
+         {
+-            break MISSING_BLOCK_LABEL_129;
++            return;
++        }
++        if(field_985_a.length() > 0 && !field_985_a.endsWith(" "))
++        {
++            field_985_a += " ";
+         }
+-        if(field_985_a.length() <= 0 || field_985_a.endsWith(" ")) goto _L2; else goto _L1
+-_L1:
+-        new StringBuilder();
+-        this;
+-        JVM INSTR dup_x1 ;
+-        field_985_a;
+-        append();
+-        " ";
+-        append();
+-        toString();
+-        field_985_a;
+-_L2:
+-        new StringBuilder();
+-        this;
+-        JVM INSTR dup_x1 ;
+-        field_985_a;
+-        append();
+-        field_945_b.field_164_u.field_933_a;
+-        append();
+-        toString();
+-        field_985_a;
++        field_985_a += field_945_b.field_164_u.field_933_a;
+         byte byte0 = 100;
+         if(field_985_a.length() > byte0)
+         {
+diff -U 3 minecraft\dj.java patched\dj.java
+--- minecraft\dj.java	Sat Oct 23 15:49:52 2010
++++ patched\dj.java	Sat Oct 23 14:43:44 2010
+@@ -27,7 +27,7 @@
+         GL11.glPopMatrix();
+     }
+ 
+-    public volatile void func_147_a(kh kh, double d, double d1, double d2, 
++    public void func_147_a(kh kh, double d, double d1, double d2, 
+             float f, float f1)
+     {
+         func_156_a((ff)kh, d, d1, d2, f, f1);
+diff -U 3 minecraft\dn.java patched\dn.java
+--- minecraft\dn.java	Sat Oct 23 15:49:52 2010
++++ patched\dn.java	Sat Oct 23 14:43:44 2010
+@@ -161,7 +161,7 @@
+     {
+     }
+ 
+-    public volatile void func_147_a(kh kh, double d, double d1, double d2, 
++    public void func_147_a(kh kh, double d, double d1, double d2, 
+             float f, float f1)
+     {
+         func_171_a((ge)kh, d, d1, d2, f, f1);
+diff -U 3 minecraft\dofix.java patched\dofix.java
+--- minecraft\dofix.java	Sat Oct 23 15:49:52 2010
++++ patched\dofix.java	Sat Oct 23 14:52:11 2010
+@@ -20,7 +20,7 @@
+         field_567_e = i1;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_566_a = datainputstream.readShort();
+         field_565_b = datainputstream.readInt();
+@@ -29,7 +29,7 @@
+         field_567_e = datainputstream.read();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeShort(field_566_a);
+         dataoutputstream.writeInt(field_565_b);
+diff -U 3 minecraft\du.java patched\du.java
+--- minecraft\du.java	Sat Oct 23 15:49:52 2010
++++ patched\du.java	Sat Oct 23 14:52:11 2010
+@@ -11,12 +11,12 @@
+     {
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_564_a = datainputstream.readLong();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeLong(field_564_a);
+     }
+diff -U 3 minecraft\dy.java patched\dy.java
+--- minecraft\dy.java	Sat Oct 23 15:49:52 2010
++++ patched\dy.java	Sat Oct 23 14:52:11 2010
+@@ -16,13 +16,13 @@
+         field_1096_a = abyte0;
+     }
+ 
+-    void func_735_a(DataOutput dataoutput)
++    void func_735_a(DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeInt(field_1096_a.length);
+         dataoutput.write(field_1096_a);
+     }
+ 
+-    void func_736_a(DataInput datainput)
++    void func_736_a(DataInput datainput) throws IOException
+     {
+         int i = datainput.readInt();
+         field_1096_a = new byte[i];
+diff -U 3 minecraft\dz.java patched\dz.java
+--- minecraft\dz.java	Sat Oct 23 15:49:52 2010
++++ patched\dz.java	Sat Oct 23 14:52:11 2010
+@@ -17,13 +17,13 @@
+         field_562_b = j;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_563_a = datainputstream.readInt();
+         field_562_b = datainputstream.readShort();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_563_a);
+         dataoutputstream.writeShort(field_562_b);
+diff -U 3 minecraft\e.java patched\e.java
+--- minecraft\e.java	Sat Oct 23 15:49:52 2010
++++ patched\e.java	Sat Oct 23 14:52:11 2010
+@@ -4,7 +4,7 @@
+ 
+ import java.nio.IntBuffer;
+ import java.util.*;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.opengl.ARBOcclusionQuery;
+ import org.lwjgl.opengl.GL11;
+ 
+@@ -399,7 +399,7 @@
+             j += func_952_a(k, l, i, d);
+             do
+             {
+-                byte byte0 = l;
++                byte byte0 = (byte) l;
+                 l *= 2;
+                 if(l > field_1445_n.length)
+                 {
+diff -U 3 minecraft\ea.java patched\ea.java
+--- minecraft\ea.java	Sat Oct 23 15:49:52 2010
++++ patched\ea.java	Sat Oct 23 14:38:55 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public class ea extends ee
+diff -U 3 minecraft\ee.java patched\ee.java
+--- minecraft\ee.java	Sat Oct 23 15:49:52 2010
++++ patched\ee.java	Sat Oct 23 14:38:55 2010
+@@ -4,7 +4,7 @@
+ 
+ import java.util.ArrayList;
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public abstract class ee extends bh
+diff -U 3 minecraft\eh.java patched\eh.java
+--- minecraft\eh.java	Sat Oct 23 15:49:52 2010
++++ patched\eh.java	Sat Oct 23 14:52:11 2010
+@@ -21,12 +21,12 @@
+         lb1.func_837_a(this);
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_555_g = datainputstream.read() != 0;
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.write(field_555_g ? 1 : 0);
+     }
+diff -U 3 minecraft\ei.java patched\ei.java
+--- minecraft\ei.java	Sat Oct 23 15:49:52 2010
++++ patched\ei.java	Sat Oct 23 14:43:44 2010
+@@ -41,7 +41,7 @@
+         GL11.glPopMatrix();
+     }
+ 
+-    public volatile void func_147_a(kh kh, double d, double d1, double d2, 
++    public void func_147_a(kh kh, double d, double d1, double d2, 
+             float f, float f1)
+     {
+         func_155_a((ao)kh, d, d1, d2, f, f1);
+diff -U 3 minecraft\el.java patched\el.java
+--- minecraft\el.java	Sat Oct 23 15:49:52 2010
++++ patched\el.java	Sat Oct 23 15:04:37 2010
+@@ -12,9 +12,9 @@
+         field_1087_a = null;
+     }
+ 
+-    abstract void func_735_a(DataOutput dataoutput);
++    abstract void func_735_a(DataOutput dataoutput) throws IOException;
+ 
+-    abstract void func_736_a(DataInput datainput);
++    abstract void func_736_a(DataInput datainput) throws IOException;
+ 
+     public abstract byte func_733_a();
+ 
+@@ -35,7 +35,7 @@
+         return this;
+     }
+ 
+-    public static el func_734_b(DataInput datainput)
++    public static el func_734_b(DataInput datainput) throws IOException
+     {
+         byte byte0 = datainput.readByte();
+         if(byte0 == 0)
+@@ -50,7 +50,7 @@
+         }
+     }
+ 
+-    public static void func_738_a(el el1, DataOutput dataoutput)
++    public static void func_738_a(el el1, DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeByte(el1.func_733_a());
+         if(el1.func_733_a() == 0)
+diff -U 3 minecraft\ep.java patched\ep.java
+--- minecraft\ep.java	Sat Oct 23 15:49:52 2010
++++ patched\ep.java	Sat Oct 23 14:52:11 2010
+@@ -16,6 +16,11 @@
+ 
+     protected InputStream openInputStream()
+     {
+-        return new hk(this, url, urlConnection.getInputStream());
++        try {
++			return new hk(this, url, urlConnection.getInputStream());
++		} catch (IOException e) {
++			e.printStackTrace();
++			return null;
++		}
+     }
+ }
+diff -U 3 minecraft\eq.java patched\eq.java
+--- minecraft\eq.java	Sat Oct 23 15:49:52 2010
++++ patched\eq.java	Sat Oct 23 14:43:44 2010
+@@ -24,18 +24,18 @@
+         return (eo.func_1106_a(f1) + 1.0F) * f2;
+     }
+ 
+-    protected volatile float func_170_d(ge ge, float f)
++    protected float func_170_d(ge ge, float f)
+     {
+         return func_182_a((mz)ge, f);
+     }
+ 
+-    public volatile void func_171_a(ge ge, double d, double d1, double d2, 
++    public void func_171_a(ge ge, double d, double d1, double d2, 
+             float f, float f1)
+     {
+         func_181_a((mz)ge, d, d1, d2, f, f1);
+     }
+ 
+-    public volatile void func_147_a(kh kh, double d, double d1, double d2, 
++    public void func_147_a(kh kh, double d, double d1, double d2, 
+             float f, float f1)
+     {
+         func_181_a((mz)kh, d, d1, d2, f, f1);
+diff -U 3 minecraft\er.java patched\er.java
+--- minecraft\er.java	Sat Oct 23 15:49:52 2010
++++ patched\er.java	Sat Oct 23 15:37:34 2010
+@@ -3,9 +3,33 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ 
+-public final class er extends Enum
++public enum er
+ {
+-
++    Kebab("Kebab", 16, 16, 0, 0),
++    Aztec("Aztec", 16, 16, 16, 0),
++    Alban("Alban", 16, 16, 32, 0),
++    Aztec2("Aztec2", 16, 16, 48, 0),
++    Bomb("Bomb", 16, 16, 64, 0),
++    Plant("Plant", 16, 16, 80, 0),
++    Wasteland("Wasteland", 16, 16, 96, 0),
++    Pool("Pool", 32, 16, 0, 32),
++    Courbet("Courbet", 32, 16, 32, 32),
++    Sea("Sea", 32, 16, 64, 32),
++    Sunset("Sunset", 32, 16, 96, 32),
++    Creebet("Creebet", 32, 16, 128, 32),
++    Wanderer("Wanderer", 16, 32, 0, 64),
++    Graham("Graham", 16, 32, 16, 64),
++    Match("Match", 32, 32, 0, 128),
++    Bust("Bust", 32, 32, 32, 128),
++    Stage("Stage", 32, 32, 64, 128),
++    Void("Void", 32, 32, 96, 128),
++    SkullAndRoses("SkullAndRoses", 32, 32, 128, 128),
++    Fighters("Fighters", 64, 32, 0, 96),
++    Pointer("Pointer", 64, 64, 0, 192),
++    Pigscene("Pigscene", 64, 64, 64, 192),
++    Skeleton("Skeleton", 64, 48, 192, 64),
++    DonkeyKong("DonkeyKong", 64, 48, 192, 112);
++/*
+     public static er[] values()
+     {
+         return (er[])field_1630_D.clone();
+@@ -15,17 +39,16 @@
+     {
+         return (er)Enum.valueOf(er.class, s);
+     }
+-
+-    private er(String s, int i, String s1, int j, int k, int l, int i1)
++*/
++    private er(String s1, int j, int k, int l, int i1)
+     {
+-        super(s, i);
+         field_1624_y = s1;
+         field_1623_z = j;
+         field_1636_A = k;
+         field_1634_B = l;
+         field_1632_C = i1;
+     }
+-
++/*
+     public static final er Kebab;
+     public static final er Aztec;
+     public static final er Alban;
+@@ -50,13 +73,14 @@
+     public static final er Pigscene;
+     public static final er Skeleton;
+     public static final er DonkeyKong;
++*/
+     public final String field_1624_y;
+     public final int field_1623_z;
+     public final int field_1636_A;
+     public final int field_1634_B;
+     public final int field_1632_C;
+-    private static final er field_1630_D[]; /* synthetic field */
+-
++//    private static final er field_1630_D[]; /* synthetic field */
++/*
+     static 
+     {
+         Kebab = new er("Kebab", 0, "Kebab", 16, 16, 0, 0);
+@@ -89,4 +113,5 @@
+             Pointer, Pigscene, Skeleton, DonkeyKong
+         });
+     }
++*/
+ }
+diff -U 3 minecraft\ez.java patched\ez.java
+--- minecraft\ez.java	Sat Oct 23 15:49:52 2010
++++ patched\ez.java	Sat Oct 23 14:55:00 2010
+@@ -22,7 +22,7 @@
+         field_548_g = (byte)(int)((ge1.field_604_ar * 256F) / 360F);
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_547_a = datainputstream.readInt();
+         field_546_b = datainputstream.readByte();
+@@ -33,7 +33,7 @@
+         field_548_g = datainputstream.readByte();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_547_a);
+         dataoutputstream.writeByte(field_546_b);
+diff -U 3 minecraft\f.java patched\f.java
+--- minecraft\f.java	Sat Oct 23 15:49:52 2010
++++ patched\f.java	Sat Oct 23 14:55:00 2010
+@@ -16,12 +16,12 @@
+         field_1097_a = f1;
+     }
+ 
+-    void func_735_a(DataOutput dataoutput)
++    void func_735_a(DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeFloat(field_1097_a);
+     }
+ 
+-    void func_736_a(DataInput datainput)
++    void func_736_a(DataInput datainput) throws IOException
+     {
+         field_1097_a = datainput.readFloat();
+     }
+diff -U 3 minecraft\fa.java patched\fa.java
+--- minecraft\fa.java	Sat Oct 23 15:49:52 2010
++++ patched\fa.java	Sat Oct 23 15:38:36 2010
+@@ -3,9 +3,14 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ 
+-final class fa extends Enum
++public enum fa
+ {
+-
++    linux,
++    solaris,
++    windows,
++    macos,
++    unknown;
++/*
+     public static fa[] values()
+     {
+         return (fa[])field_1597_f.clone();
+@@ -27,7 +32,7 @@
+     public static final fa macos;
+     public static final fa unknown;
+     private static final fa field_1597_f[]; /* synthetic field */
+-
++/*
+     static 
+     {
+         linux = new fa("linux", 0);
+@@ -39,4 +44,5 @@
+             linux, solaris, windows, macos, unknown
+         });
+     }
++*/
+ }
+diff -U 3 minecraft\fb.java patched\fb.java
+--- minecraft\fb.java	Sat Oct 23 15:49:52 2010
++++ patched\fb.java	Sat Oct 23 14:43:44 2010
+@@ -18,7 +18,7 @@
+         return bn1.func_1202_a(field_1594_a) >= bn2.func_1202_a(field_1594_a) ? 1 : -1;
+     }
+ 
+-    public volatile int compare(Object obj, Object obj1)
++    public int compare(Object obj, Object obj1)
+     {
+         return func_1063_a((bn)obj, (bn)obj1);
+     }
+diff -U 3 minecraft\fg.java patched\fg.java
+--- minecraft\fg.java	Sat Oct 23 15:49:52 2010
++++ patched\fg.java	Sat Oct 23 14:57:21 2010
+@@ -20,7 +20,7 @@
+         field_544_d = i1;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_543_e = datainputstream.read();
+         field_542_a = datainputstream.readInt();
+@@ -29,7 +29,7 @@
+         field_544_d = datainputstream.read();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.write(field_543_e);
+         dataoutputstream.writeInt(field_542_a);
+diff -U 3 minecraft\fk.java patched\fk.java
+--- minecraft\fk.java	Sat Oct 23 15:49:52 2010
++++ patched\fk.java	Sat Oct 23 14:38:55 2010
+@@ -2,7 +2,7 @@
+ // Jad home page: http://www.kpdus.com/jad.html
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public class fk extends lm
+diff -U 3 minecraft\fl.java patched\fl.java
+--- minecraft\fl.java	Sat Oct 23 15:49:52 2010
++++ patched\fl.java	Sat Oct 23 14:57:21 2010
+@@ -2,15 +2,15 @@
+ // Jad home page: http://www.kpdus.com/jad.html
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class fl extends Thread
+ {
+ 
+     public fl(Minecraft minecraft, String s)
+     {
+-        field_1588_a = minecraft;
+         super(s);
++        field_1588_a = minecraft;
+         setDaemon(true);
+         start();
+     }
+diff -U 3 minecraft\fm.java patched\fm.java
+--- minecraft\fm.java	Sat Oct 23 15:49:52 2010
++++ patched\fm.java	Sat Oct 23 14:57:21 2010
+@@ -3,16 +3,16 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.awt.*;
+-import net.minecraft.client.Minecraft;
+-import net.minecraft.client.MinecraftApplet;
++//import net.minecraft.client.Minecraft;
++//import net.minecraft.client.MinecraftApplet;
+ 
+ public final class fm extends Minecraft
+ {
+ 
+     public fm(Component component, Canvas canvas, MinecraftApplet minecraftapplet, int i, int j, boolean flag, Frame frame)
+     {
+-        field_185_a = frame;
+         super(component, canvas, minecraftapplet, i, j, flag);
++        field_185_a = frame;
+     }
+ 
+     public void func_110_a(go go)
+diff -U 3 minecraft\fn.java patched\fn.java
+--- minecraft\fn.java	Sat Oct 23 15:49:52 2010
++++ patched\fn.java	Sat Oct 23 15:04:37 2010
+@@ -57,7 +57,7 @@
+         return ((Integer)field_470_b.get(getClass())).intValue();
+     }
+ 
+-    public static fn func_324_b(DataInputStream datainputstream)
++    public static fn func_324_b(DataInputStream datainputstream) throws IOException
+     {
+         int i = datainputstream.read();
+         if(i == -1)
+@@ -75,15 +75,15 @@
+         }
+     }
+ 
+-    public static void func_328_a(fn fn1, DataOutputStream dataoutputstream)
++    public static void func_328_a(fn fn1, DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.write(fn1.func_326_b());
+         fn1.func_322_a(dataoutputstream);
+     }
+ 
+-    public abstract void func_327_a(DataInputStream datainputstream);
++    public abstract void func_327_a(DataInputStream datainputstream) throws IOException;
+ 
+-    public abstract void func_322_a(DataOutputStream dataoutputstream);
++    public abstract void func_322_a(DataOutputStream dataoutputstream) throws IOException;
+ 
+     public abstract void func_323_a(lb lb);
+ 
+diff -U 3 minecraft\fp.java patched\fp.java
+--- minecraft\fp.java	Sat Oct 23 15:49:52 2010
++++ patched\fp.java	Sat Oct 23 14:57:21 2010
+@@ -4,16 +4,16 @@
+ 
+ import java.awt.event.WindowAdapter;
+ import java.awt.event.WindowEvent;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public final class fp extends WindowAdapter
+ {
+ 
+     public fp(Minecraft minecraft, Thread thread)
+     {
++        super();
+         field_1587_a = minecraft;
+         field_1586_b = thread;
+-        super();
+     }
+ 
+     public void windowClosing(WindowEvent windowevent)
+diff -U 3 minecraft\fq.java patched\fq.java
+--- minecraft\fq.java	Sat Oct 23 15:49:52 2010
++++ patched\fq.java	Sat Oct 23 15:30:54 2010
+@@ -2,7 +2,7 @@
+ // Jad home page: http://www.kpdus.com/jad.html
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class fq
+ {
+diff -U 3 minecraft\fr.java patched\fr.java
+--- minecraft\fr.java	Sat Oct 23 15:49:52 2010
++++ patched\fr.java	Sat Oct 23 14:38:55 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.io.*;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.input.Keyboard;
+ 
+ public class fr
+diff -U 3 minecraft\fs.java patched\fs.java
+--- minecraft\fs.java	Sat Oct 23 15:49:52 2010
++++ patched\fs.java	Sat Oct 23 14:57:21 2010
+@@ -10,8 +10,8 @@
+ 
+     fs(dw dw1)
+     {
+-        field_1557_a = dw1;
+         super();
++        field_1557_a = dw1;
+     }
+ 
+     public int func_1040_a(bv bv1, bv bv2)
+@@ -23,7 +23,7 @@
+         return bv2.func_1184_a() <= bv1.func_1184_a() ? 0 : 1;
+     }
+ 
+-    public volatile int compare(Object obj, Object obj1)
++    public int compare(Object obj, Object obj1)
+     {
+         return func_1040_a((bv)obj, (bv)obj1);
+     }
+diff -U 3 minecraft\g.java patched\g.java
+--- minecraft\g.java	Sat Oct 23 15:49:52 2010
++++ patched\g.java	Sat Oct 23 14:57:21 2010
+@@ -3,16 +3,16 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.awt.*;
+-import net.minecraft.client.Minecraft;
+-import net.minecraft.client.MinecraftApplet;
++//import net.minecraft.client.Minecraft;
++//import net.minecraft.client.MinecraftApplet;
+ 
+ public class g extends Minecraft
+ {
+ 
+     public g(MinecraftApplet minecraftapplet, Component component, Canvas canvas, MinecraftApplet minecraftapplet1, int i, int j, boolean flag)
+     {
+-        field_186_a = minecraftapplet;
+         super(component, canvas, minecraftapplet1, i, j, flag);
++        field_186_a = minecraftapplet;
+     }
+ 
+     public void func_110_a(go go)
+diff -U 3 minecraft\gc.java patched\gc.java
+--- minecraft\gc.java	Sat Oct 23 15:49:52 2010
++++ patched\gc.java	Sat Oct 23 15:34:27 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class gc extends bh
+ {
+@@ -47,32 +47,25 @@
+ 
+     protected void func_580_a(char c, int i)
+     {
+-        if(c != '\026') goto _L2; else goto _L1
+-_L1:
+-        String s;
+-        int j;
+-        s = bh.func_574_c();
+-        if(s == null)
+-        {
+-            s = "";
+-        }
+-        j = 32 - field_969_i.length();
+-        if(j > s.length())
+-        {
+-            j = s.length();
+-        }
+-        if(j <= 0) goto _L2; else goto _L3
+-_L3:
+-        new StringBuilder();
+-        this;
+-        JVM INSTR dup_x1 ;
+-        field_969_i;
+-        append();
+-        s.substring(0, j);
+-        append();
+-        toString();
+-        field_969_i;
+-_L2:
++        if(c == '\026')
++    	{
++    		String s;
++    		int j;
++    		s = bh.func_574_c();
++    		if(s == null)
++    		{
++    		    s = "";
++    		}
++    		j = 32 - field_969_i.length();
++    		if(j > s.length())
++    		{
++    			j = s.length();
++    		}
++    		if(j > 0)
++    		{
++    			field_969_i += s.substring(0, j);
++    		}
++    	}
+         if(c == '\r')
+         {
+             func_572_a((fk)field_949_e.get(0));
+@@ -81,20 +74,11 @@
+         {
+             field_969_i = field_969_i.substring(0, field_969_i.length() - 1);
+         }
+-        if(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_'abcdefghijklmnopqrstuvwxyz{|}~\u2302\307\374\351\342\344\340\345\347\352\353\350\357\356\354\304\305\311\346\306\364\366\362\373\371\377\326\334\370\243\330\327\u0192\341\355\363\372\361\321\252\272\277\256\254\275\274\241\253\273".indexOf(c) < 0 || field_969_i.length() >= 32) goto _L5; else goto _L4
+-_L4:
+-        new StringBuilder();
+-        this;
+-        JVM INSTR dup_x1 ;
+-        field_969_i;
+-        append();
+-        c;
+-        append();
+-        toString();
+-        field_969_i;
+-_L5:
++        if(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_'abcdefghijklmnopqrstuvwxyz{|}~\u2302\307\374\351\342\344\340\345\347\352\353\350\357\356\354\304\305\311\346\306\364\366\362\373\371\377\326\334\370\243\330\327\u0192\341\355\363\372\361\321\252\272\277\256\254\275\274\241\253\273".indexOf(c) >= 0 && field_969_i.length() < 32)
++        {
++        	field_969_i += c;
++        }
+         ((fk)field_949_e.get(0)).field_937_g = field_969_i.length() > 0;
+-        return;
+     }
+ 
+     public void func_571_a(int i, int j, float f)
+diff -U 3 minecraft\gk.java patched\gk.java
+--- minecraft\gk.java	Sat Oct 23 15:49:52 2010
++++ patched\gk.java	Sat Oct 23 14:43:44 2010
+@@ -70,7 +70,7 @@
+         GL11.glPopMatrix();
+     }
+ 
+-    public volatile void func_147_a(kh kh, double d, double d1, double d2, 
++    public void func_147_a(kh kh, double d, double d1, double d2, 
+             float f, float f1)
+     {
+         func_154_a((kg)kh, d, d1, d2, f, f1);
+diff -U 3 minecraft\gl.java patched\gl.java
+--- minecraft\gl.java	Sat Oct 23 15:49:52 2010
++++ patched\gl.java	Sat Oct 23 14:43:44 2010
+@@ -30,7 +30,7 @@
+         }
+     }
+ 
+-    public volatile int compare(Object obj, Object obj1)
++    public int compare(Object obj, Object obj1)
+     {
+         return func_993_a((bn)obj, (bn)obj1);
+     }
+diff -U 3 minecraft\gm.java patched\gm.java
+--- minecraft\gm.java	Sat Oct 23 15:49:52 2010
++++ patched\gm.java	Sat Oct 23 14:43:44 2010
+@@ -18,7 +18,7 @@
+         return i == 0 && mv1.field_759_a;
+     }
+ 
+-    protected volatile boolean func_166_a(ge ge, int i)
++    protected boolean func_166_a(ge ge, int i)
+     {
+         return func_180_a((mv)ge, i);
+     }
+diff -U 3 minecraft\gn.java patched\gn.java
+--- minecraft\gn.java	Sat Oct 23 15:49:52 2010
++++ patched\gn.java	Sat Oct 23 14:57:21 2010
+@@ -16,12 +16,12 @@
+         field_1095_a = l;
+     }
+ 
+-    void func_735_a(DataOutput dataoutput)
++    void func_735_a(DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeLong(field_1095_a);
+     }
+ 
+-    void func_736_a(DataInput datainput)
++    void func_736_a(DataInput datainput) throws IOException
+     {
+         field_1095_a = datainput.readLong();
+     }
+diff -U 3 minecraft\gp.java patched\gp.java
+--- minecraft\gp.java	Sat Oct 23 15:49:52 2010
++++ patched\gp.java	Sat Oct 23 14:57:21 2010
+@@ -24,7 +24,7 @@
+         field_535_h = ev1 != null ? ev1.field_1617_c : 0;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_534_a = datainputstream.readInt();
+         field_533_b = datainputstream.readUTF();
+@@ -36,7 +36,7 @@
+         field_535_h = datainputstream.readShort();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_534_a);
+         dataoutputstream.writeUTF(field_533_b);
+diff -U 3 minecraft\gq.java patched\gq.java
+--- minecraft\gq.java	Sat Oct 23 15:49:52 2010
++++ patched\gq.java	Sat Oct 23 14:43:44 2010
+@@ -39,12 +39,12 @@
+         GL11.glScalef(f2 * f3, (1.0F / f2) * f3, f2 * f3);
+     }
+ 
+-    protected volatile void func_168_a(ge ge, float f)
++    protected void func_168_a(ge ge, float f)
+     {
+         func_178_a((ma)ge, f);
+     }
+ 
+-    protected volatile boolean func_166_a(ge ge, int i)
++    protected boolean func_166_a(ge ge, int i)
+     {
+         return func_179_a((ma)ge, i);
+     }
+diff -U 3 minecraft\gr.java patched\gr.java
+--- minecraft\gr.java	Sat Oct 23 15:49:52 2010
++++ patched\gr.java	Sat Oct 23 14:38:55 2010
+@@ -2,7 +2,7 @@
+ // Jad home page: http://www.kpdus.com/jad.html
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.opengl.Display;
+ import org.lwjgl.opengl.GL11;
+ 
+diff -U 3 minecraft\gt.java patched\gt.java
+--- minecraft\gt.java	Sat Oct 23 15:49:52 2010
++++ patched\gt.java	Sat Oct 23 14:57:21 2010
+@@ -16,12 +16,12 @@
+         field_532_a = s;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_532_a = datainputstream.readUTF();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeUTF(field_532_a);
+     }
+diff -U 3 minecraft\gy.java patched\gy.java
+--- minecraft\gy.java	Sat Oct 23 15:49:52 2010
++++ patched\gy.java	Sat Oct 23 14:59:38 2010
+@@ -5,12 +5,12 @@
+ import java.io.*;
+ import java.net.*;
+ import java.util.Random;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class gy extends lb
+ {
+ 
+-    public gy(Minecraft minecraft, String s, int i)
++    public gy(Minecraft minecraft, String s, int i) throws UnknownHostException, IOException
+     {
+         field_1214_c = false;
+         field_1210_g = false;
+@@ -61,7 +61,7 @@
+         double d = (double)kj1.field_499_b / 32D;
+         double d1 = (double)kj1.field_503_c / 32D;
+         double d2 = (double)kj1.field_502_d / 32D;
+-        Object obj = null;
++        kh obj = null;
+         if(kj1.field_501_e == 10)
+         {
+             obj = new oc(field_1211_f, d, d1, d2, 0);
+diff -U 3 minecraft\h.java patched\h.java
+--- minecraft\h.java	Sat Oct 23 15:49:52 2010
++++ patched\h.java	Sat Oct 23 14:59:38 2010
+@@ -3,15 +3,15 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.awt.Canvas;
+-import net.minecraft.client.MinecraftApplet;
++//import net.minecraft.client.MinecraftApplet;
+ 
+ public class h extends Canvas
+ {
+ 
+     public h(MinecraftApplet minecraftapplet)
+     {
+-        field_1696_a = minecraftapplet;
+         super();
++        field_1696_a = minecraftapplet;
+     }
+ 
+     public synchronized void addNotify()
+diff -U 3 minecraft\ha.java patched\ha.java
+--- minecraft\ha.java	Sat Oct 23 15:49:52 2010
++++ patched\ha.java	Sat Oct 23 14:59:38 2010
+@@ -24,7 +24,7 @@
+         field_525_g = (byte)(int)(dx1.field_606_ap * 128D);
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_531_a = datainputstream.readInt();
+         field_524_h = datainputstream.readShort();
+@@ -37,7 +37,7 @@
+         field_525_g = datainputstream.readByte();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_531_a);
+         dataoutputstream.writeShort(field_524_h);
+diff -U 3 minecraft\hf.java patched\hf.java
+--- minecraft\hf.java	Sat Oct 23 15:49:52 2010
++++ patched\hf.java	Sat Oct 23 14:59:38 2010
+@@ -17,13 +17,13 @@
+         field_521_b = i;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_522_a = datainputstream.readInt();
+         field_521_b = datainputstream.readByte();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_522_a);
+         dataoutputstream.writeByte(field_521_b);
+diff -U 3 minecraft\hk.java patched\hk.java
+--- minecraft\hk.java	Sat Oct 23 15:49:52 2010
++++ patched\hk.java	Sat Oct 23 14:59:38 2010
+@@ -11,8 +11,8 @@
+ 
+     public hk(ep ep1, URL url, InputStream inputstream)
+     {
+-        field_1513_b = ep1;
+         super();
++        field_1513_b = ep1;
+         field_1514_a = new byte[1];
+         field_1515_d = inputstream;
+         String s = url.getPath();
+@@ -34,7 +34,12 @@
+ 
+     public int read(byte abyte0[], int i, int j)
+     {
+-        j = field_1515_d.read(abyte0, i, j);
++        try {
++			j = field_1515_d.read(abyte0, i, j);
++		} catch (IOException e) {
++			e.printStackTrace();
++			return 0;
++		}
+         for(int k = 0; k < j; k++)
+         {
+             byte byte0 = abyte0[i + k] ^= field_1516_c >> 8;
+diff -U 3 minecraft\hm.java patched\hm.java
+--- minecraft\hm.java	Sat Oct 23 15:49:52 2010
++++ patched\hm.java	Sat Oct 23 14:59:38 2010
+@@ -13,7 +13,7 @@
+         field_1094_a = new HashMap();
+     }
+ 
+-    void func_735_a(DataOutput dataoutput)
++    void func_735_a(DataOutput dataoutput) throws IOException
+     {
+         el el1;
+         for(Iterator iterator = field_1094_a.values().iterator(); iterator.hasNext(); el.func_738_a(el1, dataoutput))
+@@ -24,7 +24,7 @@
+         dataoutput.writeByte(0);
+     }
+ 
+-    void func_736_a(DataInput datainput)
++    void func_736_a(DataInput datainput) throws IOException
+     {
+         field_1094_a.clear();
+         el el1;
+diff -U 3 minecraft\hp.java patched\hp.java
+--- minecraft\hp.java	Sat Oct 23 15:49:52 2010
++++ patched\hp.java	Sat Oct 23 14:59:38 2010
+@@ -18,14 +18,14 @@
+         field_519_a = i;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_519_a = datainputstream.readInt();
+         field_518_b = datainputstream.readUTF();
+         field_520_c = datainputstream.readUTF();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_519_a);
+         dataoutputstream.writeUTF(field_518_b);
+diff -U 3 minecraft\hq.java patched\hq.java
+--- minecraft\hq.java	Sat Oct 23 15:49:52 2010
++++ patched\hq.java	Sat Oct 23 14:38:55 2010
+@@ -2,7 +2,7 @@
+ // Jad home page: http://www.kpdus.com/jad.html
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class hq
+ {
+diff -U 3 minecraft\hw.java patched\hw.java
+--- minecraft\hw.java	Sat Oct 23 15:49:52 2010
++++ patched\hw.java	Sat Oct 23 14:43:44 2010
+@@ -53,7 +53,7 @@
+         GL11.glPopMatrix();
+     }
+ 
+-    public volatile void func_147_a(kh kh, double d, double d1, double d2, 
++    public void func_147_a(kh kh, double d, double d1, double d2, 
+             float f, float f1)
+     {
+         func_153_a((jd)kh, d, d1, d2, f, f1);
+diff -U 3 minecraft\hx.java patched\hx.java
+--- minecraft\hx.java	Sat Oct 23 15:49:52 2010
++++ patched\hx.java	Sat Oct 23 14:38:55 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public class hx extends ee
+diff -U 3 minecraft\ia.java patched\ia.java
+--- minecraft\ia.java	Sat Oct 23 15:49:52 2010
++++ patched\ia.java	Sat Oct 23 14:38:55 2010
+@@ -2,7 +2,7 @@
+ // Jad home page: http://www.kpdus.com/jad.html
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class ia extends hq
+ {
+diff -U 3 minecraft\ib.java patched\ib.java
+--- minecraft\ib.java	Sat Oct 23 15:49:52 2010
++++ patched\ib.java	Sat Oct 23 14:38:55 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class ib extends jq
+ {
+diff -U 3 minecraft\id.java patched\id.java
+--- minecraft\id.java	Sat Oct 23 15:49:52 2010
++++ patched\id.java	Sat Oct 23 14:38:55 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public class id extends ee
+diff -U 3 minecraft\ie.java patched\ie.java
+--- minecraft\ie.java	Sat Oct 23 15:49:52 2010
++++ patched\ie.java	Sat Oct 23 14:38:55 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class ie extends bh
+ {
+diff -U 3 minecraft\ih.java patched\ih.java
+--- minecraft\ih.java	Sat Oct 23 15:49:52 2010
++++ patched\ih.java	Sat Oct 23 15:30:54 2010
+@@ -2,11 +2,16 @@
+ // Jad home page: http://www.kpdus.com/jad.html
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+-public final class ih extends Enum
++public enum ih
+ {
+-
++    linux,
++    solaris,
++    windows,
++    macos,
++    unknown;
++/*
+     public static ih[] values()
+     {
+         return (ih[])field_1481_f.clone();
+@@ -28,7 +33,7 @@
+     public static final ih macos;
+     public static final ih unknown;
+     private static final ih field_1481_f[]; /* synthetic field */
+-
++/*
+     static 
+     {
+         linux = new ih("linux", 0);
+@@ -40,4 +45,5 @@
+             linux, solaris, windows, macos, unknown
+         });
+     }
++*/
+ }
+diff -U 3 minecraft\ii.java patched\ii.java
+--- minecraft\ii.java	Sat Oct 23 15:49:52 2010
++++ patched\ii.java	Sat Oct 23 14:59:38 2010
+@@ -9,7 +9,7 @@
+ public class ii
+ {
+ 
+-    public ii(Socket socket, String s, lb lb1)
++    public ii(Socket socket, String s, lb lb1) throws IOException
+     {
+         field_1475_d = new Object();
+         field_1471_h = true;
+diff -U 3 minecraft\ij.java patched\ij.java
+--- minecraft\ij.java	Sat Oct 23 15:49:52 2010
++++ patched\ij.java	Sat Oct 23 14:59:38 2010
+@@ -16,12 +16,12 @@
+         field_517_a = s;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_517_a = datainputstream.readUTF();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeUTF(field_517_a);
+     }
+diff -U 3 minecraft\il.java patched\il.java
+--- minecraft\il.java	Sat Oct 23 15:49:52 2010
++++ patched\il.java	Sat Oct 23 14:38:55 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class il extends hq
+ {
+diff -U 3 minecraft\in.java patched\in.java
+--- minecraft\in.java	Sat Oct 23 15:49:52 2010
++++ patched\in.java	Sat Oct 23 14:43:44 2010
+@@ -75,7 +75,7 @@
+         GL11.glPopMatrix();
+     }
+ 
+-    public volatile void func_930_a(ic ic, double d, double d1, double d2, 
++    public void func_930_a(ic ic, double d, double d1, double d2, 
+             float f)
+     {
+         func_932_a((ob)ic, d, d1, d2, f);
+diff -U 3 minecraft\io.java patched\io.java
+--- minecraft\io.java	Sat Oct 23 15:49:52 2010
++++ patched\io.java	Sat Oct 23 15:01:10 2010
+@@ -16,12 +16,12 @@
+         field_1093_a = i;
+     }
+ 
+-    void func_735_a(DataOutput dataoutput)
++    void func_735_a(DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeInt(field_1093_a);
+     }
+ 
+-    void func_736_a(DataInput datainput)
++    void func_736_a(DataInput datainput) throws IOException
+     {
+         field_1093_a = datainput.readInt();
+     }
+diff -U 3 minecraft\iq.java patched\iq.java
+--- minecraft\iq.java	Sat Oct 23 15:49:52 2010
++++ patched\iq.java	Sat Oct 23 14:38:55 2010
+@@ -5,7 +5,7 @@
+ import java.nio.FloatBuffer;
+ import java.util.List;
+ import java.util.Random;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.input.Mouse;
+ import org.lwjgl.opengl.*;
+ import org.lwjgl.util.glu.GLU;
+diff -U 3 minecraft\is.java patched\is.java
+--- minecraft\is.java	Sat Oct 23 15:49:52 2010
++++ patched\is.java	Sat Oct 23 15:01:10 2010
+@@ -12,7 +12,7 @@
+         field_486_g = true;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         super.func_327_a(datainputstream);
+         field_484_b = datainputstream.readByte();
+@@ -22,7 +22,7 @@
+         field_487_f = datainputstream.readByte();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         super.func_322_a(dataoutputstream);
+         dataoutputstream.writeByte(field_484_b);
+diff -U 3 minecraft\iv.java patched\iv.java
+--- minecraft\iv.java	Sat Oct 23 15:49:52 2010
++++ patched\iv.java	Sat Oct 23 14:38:55 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class iv extends bh
+ {
+diff -U 3 minecraft\ix.java patched\ix.java
+--- minecraft\ix.java	Sat Oct 23 15:49:52 2010
++++ patched\ix.java	Sat Oct 23 15:01:10 2010
+@@ -16,12 +16,12 @@
+         field_1092_a = byte0;
+     }
+ 
+-    void func_735_a(DataOutput dataoutput)
++    void func_735_a(DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeByte(field_1092_a);
+     }
+ 
+-    void func_736_a(DataInput datainput)
++    void func_736_a(DataInput datainput) throws IOException
+     {
+         field_1092_a = datainput.readByte();
+     }
+diff -U 3 minecraft\jf.java patched\jf.java
+--- minecraft\jf.java	Sat Oct 23 15:49:52 2010
++++ patched\jf.java	Sat Oct 23 14:43:44 2010
+@@ -56,7 +56,7 @@
+         return field_1362_g <= jf1.field_1362_g ? 0 : 1;
+     }
+ 
+-    public volatile int compareTo(Object obj)
++    public int compareTo(Object obj)
+     {
+         return func_899_a((jf)obj);
+     }
+diff -U 3 minecraft\jh.java patched\jh.java
+--- minecraft\jh.java	Sat Oct 23 15:49:52 2010
++++ patched\jh.java	Sat Oct 23 14:38:55 2010
+@@ -2,7 +2,7 @@
+ // Jad home page: http://www.kpdus.com/jad.html
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public class jh
+diff -U 3 minecraft\ji.java patched\ji.java
+--- minecraft\ji.java	Sat Oct 23 15:49:52 2010
++++ patched\ji.java	Sat Oct 23 15:01:10 2010
+@@ -11,14 +11,14 @@
+     {
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_515_a = datainputstream.readInt();
+         field_514_b = datainputstream.readInt();
+         field_516_c = datainputstream.readInt();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_515_a);
+         dataoutputstream.writeInt(field_514_b);
+diff -U 3 minecraft\jl.java patched\jl.java
+--- minecraft\jl.java	Sat Oct 23 15:49:52 2010
++++ patched\jl.java	Sat Oct 23 15:01:10 2010
+@@ -21,7 +21,7 @@
+         field_510_f = (byte)(int)((kh1.field_604_ar * 256F) / 360F);
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_509_a = datainputstream.readInt();
+         field_508_b = datainputstream.readInt();
+@@ -31,7 +31,7 @@
+         field_510_f = (byte)datainputstream.read();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_509_a);
+         dataoutputstream.writeInt(field_508_b);
+diff -U 3 minecraft\jq.java patched\jq.java
+--- minecraft\jq.java	Sat Oct 23 15:49:52 2010
++++ patched\jq.java	Sat Oct 23 14:38:55 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class jq extends bh
+ {
+diff -U 3 minecraft\js.java patched\js.java
+--- minecraft\js.java	Sat Oct 23 15:49:52 2010
++++ patched\js.java	Sat Oct 23 15:01:10 2010
+@@ -3,9 +3,12 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ 
+-public final class js extends Enum
++public enum js
+ {
+-
++    everything,
++    mobs,
++    players;
++/*
+     public static js[] func_882_values()
+     {
+         return (js[])field_1340_d.clone();
+@@ -25,7 +28,7 @@
+     public static final js mobs;
+     public static final js players;
+     private static final js field_1340_d[]; /* synthetic field */
+-
++/*
+     static 
+     {
+         everything = new js("everything", 0);
+@@ -35,4 +38,5 @@
+             everything, mobs, players
+         });
+     }
++*/
+ }
+diff -U 3 minecraft\ju.java patched\ju.java
+--- minecraft\ju.java	Sat Oct 23 15:49:52 2010
++++ patched\ju.java	Sat Oct 23 15:04:37 2010
+@@ -11,12 +11,12 @@
+     {
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_507_a = datainputstream.readInt();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_507_a);
+     }
+diff -U 3 minecraft\jx.java patched\jx.java
+--- minecraft\jx.java	Sat Oct 23 15:49:52 2010
++++ patched\jx.java	Sat Oct 23 15:04:37 2010
+@@ -12,14 +12,14 @@
+         field_486_g = true;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         super.func_327_a(datainputstream);
+         field_488_e = datainputstream.readByte();
+         field_487_f = datainputstream.readByte();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         super.func_322_a(dataoutputstream);
+         dataoutputstream.writeByte(field_488_e);
+diff -U 3 minecraft\k.java patched\k.java
+--- minecraft\k.java	Sat Oct 23 15:49:52 2010
++++ patched\k.java	Sat Oct 23 15:04:37 2010
+@@ -9,8 +9,8 @@
+ 
+     k(ia ia1, int i, Class class1, Class aclass[])
+     {
+-        field_1686_a = ia1;
+         super(i, class1, aclass);
++        field_1686_a = ia1;
+     }
+ 
+     protected mt func_1151_a(cn cn1, int i, int j)
+diff -U 3 minecraft\ka.java patched\ka.java
+--- minecraft\ka.java	Sat Oct 23 15:49:52 2010
++++ patched\ka.java	Sat Oct 23 15:04:37 2010
+@@ -11,14 +11,14 @@
+     {
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_505_a = datainputstream.readInt();
+         field_504_b = datainputstream.readInt();
+         field_506_c = datainputstream.read() != 0;
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_505_a);
+         dataoutputstream.writeInt(field_504_b);
+diff -U 3 minecraft\kc.java patched\kc.java
+--- minecraft\kc.java	Sat Oct 23 15:49:52 2010
++++ patched\kc.java	Sat Oct 23 15:04:37 2010
+@@ -9,8 +9,8 @@
+ 
+     public kc(cx cx1, int i, int j)
+     {
+-        field_1313_d = cx1;
+         super();
++        field_1313_d = cx1;
+         field_1312_a = field_1311_b = (double)(10 + j) + cx.func_592_j().nextDouble() * 32D + (double)i;
+     }
+ 
+diff -U 3 minecraft\ki.java patched\ki.java
+--- minecraft\ki.java	Sat Oct 23 15:49:52 2010
++++ patched\ki.java	Sat Oct 23 15:04:37 2010
+@@ -14,7 +14,7 @@
+         field_1091_a = new ArrayList();
+     }
+ 
+-    void func_735_a(DataOutput dataoutput)
++    void func_735_a(DataOutput dataoutput) throws IOException
+     {
+         if(field_1091_a.size() > 0)
+         {
+@@ -32,7 +32,7 @@
+ 
+     }
+ 
+-    void func_736_a(DataInput datainput)
++    void func_736_a(DataInput datainput) throws IOException
+     {
+         field_1090_b = datainput.readByte();
+         int i = datainput.readInt();
+diff -U 3 minecraft\kj.java patched\kj.java
+--- minecraft\kj.java	Sat Oct 23 15:49:52 2010
++++ patched\kj.java	Sat Oct 23 15:04:37 2010
+@@ -11,7 +11,7 @@
+     {
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_500_a = datainputstream.readInt();
+         field_501_e = datainputstream.readByte();
+@@ -20,7 +20,7 @@
+         field_502_d = datainputstream.readInt();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_500_a);
+         dataoutputstream.writeByte(field_501_e);
+diff -U 3 minecraft\kk.java patched\kk.java
+--- minecraft\kk.java	Sat Oct 23 15:49:52 2010
++++ patched\kk.java	Sat Oct 23 15:04:37 2010
+@@ -114,9 +114,9 @@
+                 i2 = 16;
+             }
+             boolean flag2 = false;
+-            for(int j2 = d8; !flag2 && j2 < k1; j2++)
++            for(int j2 = (int) d8; !flag2 && j2 < k1; j2++)
+             {
+-                for(int l2 = d10; !flag2 && l2 < i2; l2++)
++                for(int l2 = (int) d10; !flag2 && l2 < i2; l2++)
+                 {
+                     for(int i3 = l1 + 1; !flag2 && i3 >= d9 - 1; i3--)
+                     {
+@@ -131,7 +131,7 @@
+                         }
+                         if(i3 != d9 - 1 && j2 != d8 && j2 != k1 - 1 && l2 != d10 && l2 != i2 - 1)
+                         {
+-                            i3 = d9;
++                            i3 = (int) d9;
+                         }
+                     }
+ 
+@@ -143,10 +143,10 @@
+             {
+                 continue;
+             }
+-            for(int k2 = d8; k2 < k1; k2++)
++            for(int k2 = (int) d8; k2 < k1; k2++)
+             {
+                 double d12 = (((double)(k2 + i * 16) + 0.5D) - d) / d6;
+-                for(int k3 = d10; k3 < i2; k3++)
++                for(int k3 = (int) d10; k3 < i2; k3++)
+                 {
+                     double d13 = (((double)(k3 + j * 16) + 0.5D) - d2) / d6;
+                     int l3 = (k2 * 16 + k3) * 128 + l1;
+diff -U 3 minecraft\kp.java patched\kp.java
+--- minecraft\kp.java	Sat Oct 23 15:49:52 2010
++++ patched\kp.java	Sat Oct 23 15:04:37 2010
+@@ -11,7 +11,7 @@
+     {
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         super.func_327_a(datainputstream);
+         field_484_b = datainputstream.readByte();
+@@ -19,7 +19,7 @@
+         field_489_d = datainputstream.readByte();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         super.func_322_a(dataoutputstream);
+         dataoutputstream.writeByte(field_484_b);
+diff -U 3 minecraft\kr.java patched\kr.java
+--- minecraft\kr.java	Sat Oct 23 15:49:52 2010
++++ patched\kr.java	Sat Oct 23 15:04:37 2010
+@@ -16,12 +16,12 @@
+         field_1089_a = d;
+     }
+ 
+-    void func_735_a(DataOutput dataoutput)
++    void func_735_a(DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeDouble(field_1089_a);
+     }
+ 
+-    void func_736_a(DataInput datainput)
++    void func_736_a(DataInput datainput) throws IOException
+     {
+         field_1089_a = datainput.readDouble();
+     }
+diff -U 3 minecraft\kt.java patched\kt.java
+--- minecraft\kt.java	Sat Oct 23 15:49:52 2010
++++ patched\kt.java	Sat Oct 23 14:43:44 2010
+@@ -84,7 +84,7 @@
+         GL11.glPopMatrix();
+     }
+ 
+-    public volatile void func_147_a(kh kh, double d, double d1, double d2, 
++    public void func_147_a(kh kh, double d, double d1, double d2, 
+             float f, float f1)
+     {
+         func_152_a((oc)kh, d, d1, d2, f, f1);
+diff -U 3 minecraft\kz.java patched\kz.java
+--- minecraft\kz.java	Sat Oct 23 15:49:52 2010
++++ patched\kz.java	Sat Oct 23 15:04:37 2010
+@@ -11,10 +11,10 @@
+ 
+     kz(cc cc1, String s, hb hb1)
+     {
++        super();
+         field_1217_c = cc1;
+         field_1216_a = s;
+         field_1215_b = hb1;
+-        super();
+     }
+ 
+     public void run()
+diff -U 3 minecraft\la.java patched\la.java
+--- minecraft\la.java	Sat Oct 23 15:49:52 2010
++++ patched\la.java	Sat Oct 23 14:38:55 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.io.PrintStream;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class la extends bi
+ {
+diff -U 3 minecraft\lc.java patched\lc.java
+--- minecraft\lc.java	Sat Oct 23 15:49:52 2010
++++ patched\lc.java	Sat Oct 23 15:04:37 2010
+@@ -8,8 +8,8 @@
+ 
+     public lc(gs gs1, int i, int j, int k, int l, int i1)
+     {
+-        field_1203_g = gs1;
+         super();
++        field_1203_g = gs1;
+         field_1202_a = i;
+         field_1201_b = j;
+         field_1207_c = k;
+diff -U 3 minecraft\ld.java patched\ld.java
+--- minecraft\ld.java	Sat Oct 23 15:49:52 2010
++++ patched\ld.java	Sat Oct 23 15:04:37 2010
+@@ -11,14 +11,14 @@
+     {
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_497_a = datainputstream.readShort();
+         field_496_b = datainputstream.readByte();
+         field_498_c = datainputstream.readShort();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeShort(field_497_a);
+         dataoutputstream.writeByte(field_496_b);
+diff -U 3 minecraft\lh.java patched\lh.java
+--- minecraft\lh.java	Sat Oct 23 15:49:52 2010
++++ patched\lh.java	Sat Oct 23 15:04:37 2010
+@@ -8,8 +8,8 @@
+ 
+     lh(ad ad1)
+     {
+-        field_1197_a = ad1;
+         super();
++        field_1197_a = ad1;
+     }
+ 
+     public void run()
+diff -U 3 minecraft\li.java patched\li.java
+--- minecraft\li.java	Sat Oct 23 15:49:52 2010
++++ patched\li.java	Sat Oct 23 15:04:37 2010
+@@ -12,7 +12,7 @@
+         field_472_j = true;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_492_a = datainputstream.readInt();
+         field_491_b = datainputstream.read();
+@@ -21,7 +21,7 @@
+         field_493_e = datainputstream.read();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_492_a);
+         dataoutputstream.write(field_491_b);
+diff -U 3 minecraft\lj.java patched\lj.java
+--- minecraft\lj.java	Sat Oct 23 15:49:52 2010
++++ patched\lj.java	Sat Oct 23 15:04:37 2010
+@@ -8,9 +8,9 @@
+ 
+     lj(lo lo1, ee ee, gh gh, int i, int j, int k, int l)
+     {
++        super(ee, gh, i, j, k);
+         field_1123_d = lo1;
+         field_1124_c = l;
+-        super(ee, gh, i, j, k);
+     }
+ 
+     public boolean func_780_a(ev ev1)
+diff -U 3 minecraft\lk.java patched\lk.java
+--- minecraft\lk.java	Sat Oct 23 15:49:52 2010
++++ patched\lk.java	Sat Oct 23 15:04:37 2010
+@@ -9,8 +9,8 @@
+ 
+     lk(ad ad1, File file, String s)
+     {
+-        field_1051_z = ad1;
+         super(file, s);
++        field_1051_z = ad1;
+     }
+ 
+     protected aw func_610_a(File file)
+diff -U 3 minecraft\lo.java patched\lo.java
+--- minecraft\lo.java	Sat Oct 23 15:49:52 2010
++++ patched\lo.java	Sat Oct 23 14:38:55 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public class lo extends ee
+diff -U 3 minecraft\lq.java patched\lq.java
+--- minecraft\lq.java	Sat Oct 23 15:49:52 2010
++++ patched\lq.java	Sat Oct 23 15:04:37 2010
+@@ -12,12 +12,12 @@
+         field_486_g = false;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_485_a = datainputstream.readInt();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_485_a);
+     }
+diff -U 3 minecraft\ls.java patched\ls.java
+--- minecraft\ls.java	Sat Oct 23 15:49:52 2010
++++ patched\ls.java	Sat Oct 23 15:05:56 2010
+@@ -16,12 +16,12 @@
+         field_1088_a = word0;
+     }
+ 
+-    void func_735_a(DataOutput dataoutput)
++    void func_735_a(DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeShort(field_1088_a);
+     }
+ 
+-    void func_736_a(DataInput datainput)
++    void func_736_a(DataInput datainput) throws IOException
+     {
+         field_1088_a = datainput.readShort();
+     }
+diff -U 3 minecraft\lu.java patched\lu.java
+--- minecraft\lu.java	Sat Oct 23 15:49:52 2010
++++ patched\lu.java	Sat Oct 23 14:38:55 2010
+@@ -5,7 +5,7 @@
+ import java.awt.Color;
+ import java.util.ArrayList;
+ import java.util.Random;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.input.Keyboard;
+ import org.lwjgl.opengl.GL11;
+ 
+diff -U 3 minecraft\lw.java patched\lw.java
+--- minecraft\lw.java	Sat Oct 23 15:49:52 2010
++++ patched\lw.java	Sat Oct 23 14:38:55 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class lw extends bh
+ {
+diff -U 3 minecraft\m.java patched\m.java
+--- minecraft\m.java	Sat Oct 23 15:49:52 2010
++++ patched\m.java	Sat Oct 23 15:05:56 2010
+@@ -22,7 +22,7 @@
+ 
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_571_a = datainputstream.readInt();
+         short word0 = datainputstream.readShort();
+@@ -40,7 +40,7 @@
+ 
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_571_a);
+         dataoutputstream.writeShort(field_570_b.length);
+diff -U 3 minecraft\mc.java patched\mc.java
+--- minecraft\mc.java	Sat Oct 23 15:49:52 2010
++++ patched\mc.java	Sat Oct 23 14:43:44 2010
+@@ -17,13 +17,13 @@
+         super.func_171_a(am1, d, d1, d2, f, f1);
+     }
+ 
+-    public volatile void func_171_a(ge ge, double d, double d1, double d2, 
++    public void func_171_a(ge ge, double d, double d1, double d2, 
+             float f, float f1)
+     {
+         func_177_a((am)ge, d, d1, d2, f, f1);
+     }
+ 
+-    public volatile void func_147_a(kh kh, double d, double d1, double d2, 
++    public void func_147_a(kh kh, double d, double d1, double d2, 
+             float f, float f1)
+     {
+         func_177_a((am)kh, d, d1, d2, f, f1);
+diff -U 3 minecraft\mh.java patched\mh.java
+--- minecraft\mh.java	Sat Oct 23 15:49:52 2010
++++ patched\mh.java	Sat Oct 23 15:05:56 2010
+@@ -20,14 +20,14 @@
+         field_553_i = true;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_557_e = datainputstream.readFloat();
+         field_556_f = datainputstream.readFloat();
+         super.func_327_a(datainputstream);
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeFloat(field_557_e);
+         dataoutputstream.writeFloat(field_556_f);
+diff -U 3 minecraft\Minecraft.java patched\Minecraft.java
+--- minecraft\Minecraft.java	Sat Oct 23 15:49:52 2010
++++ patched\Minecraft.java	Sat Oct 23 15:06:16 2010
+@@ -2,68 +2,68 @@
+ // Jad home page: http://www.kpdus.com/jad.html
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+-package net.minecraft.client;
++//package net.minecraft.client;
+ 
+-import aa;
+-import aj;
+-import as;
+-import at;
+-import au;
+-import be;
+-import bf;
+-import bh;
+-import bi;
+-import bn;
+-import bq;
+-import cf;
+-import cn;
+-import cr;
+-import cx;
+-import de;
+-import df;
+-import dl;
+-import e;
+-import eg;
+-import eo;
+-import eu;
+-import ev;
+-import ey;
+-import fl;
+-import fm;
+-import fp;
+-import fq;
+-import fr;
+-import gd;
+-import go;
+-import gr;
+-import ho;
+-import hq;
+-import ht;
+-import ie;
+-import ih;
+-import il;
+-import iq;
+-import ir;
+-import it;
+-import iv;
+-import iy;
++//import aa;
++//import aj;
++//import as;
++//import at;
++//import au;
++//import be;
++//import bf;
++//import bh;
++//import bi;
++//import bn;
++//import bq;
++//import cf;
++//import cn;
++//import cr;
++//import cx;
++//import de;
++//import df;
++//import dl;
++//import e;
++//import eg;
++//import eo;
++//import eu;
++//import ev;
++//import ey;
++//import fl;
++//import fm;
++//import fp;
++//import fq;
++//import fr;
++//import gd;
++//import go;
++//import gr;
++//import ho;
++//import hq;
++//import ht;
++//import ie;
++//import ih;
++//import il;
++//import iq;
++//import ir;
++//import it;
++//import iv;
++//import iy;
+ import java.awt.*;
+ import java.io.*;
+-import jh;
+-import jz;
+-import kd;
+-import kx;
+-import lo;
+-import lu;
+-import lx;
+-import ly;
+-import mf;
+-import ml;
+-import mn;
+-import mp;
+-import my;
+-import nr;
+-import of;
++//import jh;
++//import jz;
++//import kd;
++//import kx;
++//import lo;
++//import lu;
++//import lx;
++//import ly;
++//import mf;
++//import ml;
++//import mn;
++//import mp;
++//import my;
++//import nr;
++//import of;
+ import org.lwjgl.LWJGLException;
+ import org.lwjgl.input.*;
+ import org.lwjgl.opengl.*;
+@@ -123,7 +123,7 @@
+         field_139_T = i;
+     }
+ 
+-    public void func_136_a()
++    public void func_136_a() throws LWJGLException
+     {
+         if(field_174_k != null)
+         {
+@@ -151,7 +151,7 @@
+             }
+         } else
+         {
+-            Display.setDisplayMode(new DisplayMode(field_182_c, field_181_d));
++            Display.setDisplayMode(new org.lwjgl.opengl.DisplayMode(field_182_c, field_181_d));
+         }
+         Display.setTitle("Minecraft Minecraft Alpha v1.1.2_01");
+         try
+@@ -227,7 +227,7 @@
+         }
+     }
+ 
+-    private void func_104_p()
++    private void func_104_p() throws LWJGLException
+     {
+         iy iy1 = new iy(field_182_c, field_181_d);
+         int i = iy1.func_903_a();
+@@ -813,7 +813,7 @@
+                 {
+                     field_181_d = 1;
+                 }
+-                Display.setDisplayMode(new DisplayMode(field_142_Q, field_141_R));
++                Display.setDisplayMode(new org.lwjgl.opengl.DisplayMode(field_142_Q, field_141_R));
+             }
+             func_138_f();
+             Display.setFullscreen(field_184_a);
+diff -U 3 minecraft\MinecraftApplet.java patched\MinecraftApplet.java
+--- minecraft\MinecraftApplet.java	Sat Oct 23 15:49:52 2010
++++ patched\MinecraftApplet.java	Sat Oct 23 15:40:44 2010
+@@ -2,11 +2,11 @@
+ // Jad home page: http://www.kpdus.com/jad.html
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+-package net.minecraft.client;
++//package net.minecraft.client;
+ 
+-import dl;
+-import g;
+-import h;
++//import dl;
++//import g;
++//import h;
+ import java.applet.Applet;
+ import java.awt.BorderLayout;
+ import java.awt.Canvas;
+@@ -34,20 +34,10 @@
+         }
+         field_131_b = new g(this, this, field_132_a, this, getWidth(), getHeight(), flag);
+         field_131_b.field_175_j = getDocumentBase().getHost();
+-        if(getDocumentBase().getPort() <= 0) goto _L2; else goto _L1
+-_L1:
+-        new StringBuilder();
+-        field_131_b;
+-        JVM INSTR dup_x1 ;
+-        field_175_j;
+-        append();
+-        ":";
+-        append();
+-        getDocumentBase().getPort();
+-        append();
+-        toString();
+-        field_175_j;
+-_L2:
++        if(getDocumentBase().getPort() > 0)
++        {
++        	field_131_b.field_175_j += ":" + getDocumentBase().getPort();
++        }
+         if(getParameter("username") != null && getParameter("sessionid") != null)
+         {
+             field_131_b.field_176_i = new dl(getParameter("username"), getParameter("sessionid"));
+diff -U 3 minecraft\mk.java patched\mk.java
+--- minecraft\mk.java	Sat Oct 23 15:49:52 2010
++++ patched\mk.java	Sat Oct 23 15:07:56 2010
+@@ -10,8 +10,8 @@
+ 
+     public mk(iffix iffix1, cn cn1, int i, int j, int k)
+     {
+-        field_1160_a = iffix1;
+         super();
++        field_1160_a = iffix1;
+         field_1161_g = new ArrayList();
+         field_1159_b = cn1;
+         field_1165_c = i;
+diff -U 3 minecraft\mn.java patched\mn.java
+--- minecraft\mn.java	Sat Oct 23 15:49:52 2010
++++ patched\mn.java	Sat Oct 23 14:38:55 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class mn extends bh
+ {
+diff -U 3 minecraft\mo.java patched\mo.java
+--- minecraft\mo.java	Sat Oct 23 15:49:52 2010
++++ patched\mo.java	Sat Oct 23 14:38:55 2010
+@@ -2,7 +2,7 @@
+ // Jad home page: http://www.kpdus.com/jad.html
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.opengl.GL11;
+ 
+ public class mo extends fk
+diff -U 3 minecraft\na.java patched\na.java
+--- minecraft\na.java	Sat Oct 23 15:49:52 2010
++++ patched\na.java	Sat Oct 23 15:07:56 2010
+@@ -12,7 +12,7 @@
+         field_472_j = true;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_479_a = datainputstream.readInt();
+         field_478_b = datainputstream.readInt();
+@@ -29,7 +29,7 @@
+         datainputstream.readFully(field_481_e);
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_479_a);
+         dataoutputstream.writeInt(field_478_b);
+diff -U 3 minecraft\nc.java patched\nc.java
+--- minecraft\nc.java	Sat Oct 23 15:49:52 2010
++++ patched\nc.java	Sat Oct 23 15:07:56 2010
+@@ -4,18 +4,18 @@
+ 
+ import java.net.ConnectException;
+ import java.net.UnknownHostException;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ class nc extends Thread
+ {
+ 
+     nc(mn mn1, Minecraft minecraft, String s, int i)
+     {
++        super();
+         field_1103_d = mn1;
+         field_1102_a = minecraft;
+         field_1101_b = s;
+         field_1104_c = i;
+-        super();
+     }
+ 
+     public void run()
+diff -U 3 minecraft\ne.java patched\ne.java
+--- minecraft\ne.java	Sat Oct 23 15:49:52 2010
++++ patched\ne.java	Sat Oct 23 15:07:56 2010
+@@ -23,12 +23,12 @@
+         }
+     }
+ 
+-    void func_735_a(DataOutput dataoutput)
++    void func_735_a(DataOutput dataoutput) throws IOException
+     {
+         dataoutput.writeUTF(field_1098_a);
+     }
+ 
+-    void func_736_a(DataInput datainput)
++    void func_736_a(DataInput datainput) throws IOException
+     {
+         field_1098_a = datainput.readUTF();
+     }
+diff -U 3 minecraft\nh.java patched\nh.java
+--- minecraft\nh.java	Sat Oct 23 15:49:52 2010
++++ patched\nh.java	Sat Oct 23 15:07:56 2010
+@@ -8,8 +8,8 @@
+ 
+     nh(ii ii1)
+     {
+-        field_1086_a = ii1;
+         super();
++        field_1086_a = ii1;
+     }
+ 
+     public void run()
+diff -U 3 minecraft\ni.java patched\ni.java
+--- minecraft\ni.java	Sat Oct 23 15:49:52 2010
++++ patched\ni.java	Sat Oct 23 15:41:25 2010
+@@ -8,8 +8,8 @@
+ 
+     ni(ii ii1, String s)
+     {
+-        field_1085_a = ii1;
+         super(s);
++        field_1085_a = ii1;
+     }
+ 
+     public void run()
+@@ -18,19 +18,17 @@
+         {
+             ii.field_1477_b++;
+         }
+-        for(; ii.func_971_a(field_1085_a) && !ii.func_968_b(field_1085_a); ii.func_966_c(field_1085_a)) { }
+-        synchronized(ii.field_1478_a)
++        try
+         {
+-            ii.field_1477_b--;
++            for(; ii.func_971_a(field_1085_a) && !ii.func_968_b(field_1085_a); ii.func_966_c(field_1085_a)) { }
+         }
+-        break MISSING_BLOCK_LABEL_115;
+-        Exception exception2;
+-        exception2;
+-        synchronized(ii.field_1478_a)
++        finally
+         {
+-            ii.field_1477_b--;
++            synchronized(ii.field_1478_a)
++            {
++                ii.field_1477_b--;
++            }
+         }
+-        throw exception2;
+     }
+ 
+     final ii field_1085_a; /* synthetic field */
+diff -U 3 minecraft\nj.java patched\nj.java
+--- minecraft\nj.java	Sat Oct 23 15:49:52 2010
++++ patched\nj.java	Sat Oct 23 14:38:55 2010
+@@ -2,7 +2,7 @@
+ // Jad home page: http://www.kpdus.com/jad.html
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ 
+ public class nj extends hq
+ {
+diff -U 3 minecraft\nk.java patched\nk.java
+--- minecraft\nk.java	Sat Oct 23 15:49:52 2010
++++ patched\nk.java	Sat Oct 23 15:41:51 2010
+@@ -8,8 +8,8 @@
+ 
+     nk(ii ii1, String s)
+     {
+-        field_1063_a = ii1;
+         super(s);
++        field_1063_a = ii1;
+     }
+ 
+     public void run()
+@@ -18,19 +18,17 @@
+         {
+             ii.field_1476_c++;
+         }
+-        for(; ii.func_971_a(field_1063_a); ii.func_965_d(field_1063_a)) { }
+-        synchronized(ii.field_1478_a)
++        try
+         {
+-            ii.field_1476_c--;
++            for(; ii.func_971_a(field_1063_a); ii.func_965_d(field_1063_a)) { }
+         }
+-        break MISSING_BLOCK_LABEL_105;
+-        Exception exception2;
+-        exception2;
+-        synchronized(ii.field_1478_a)
++        finally
+         {
+-            ii.field_1476_c--;
++            synchronized(ii.field_1478_a)
++            {
++                ii.field_1476_c--;
++            }
+         }
+-        throw exception2;
+     }
+ 
+     final ii field_1063_a; /* synthetic field */
+diff -U 3 minecraft\ns.java patched\ns.java
+--- minecraft\ns.java	Sat Oct 23 15:49:52 2010
++++ patched\ns.java	Sat Oct 23 14:43:44 2010
+@@ -18,7 +18,7 @@
+         return i == 0 && !bo1.field_760_a;
+     }
+ 
+-    protected volatile boolean func_166_a(ge ge, int i)
++    protected boolean func_166_a(ge ge, int i)
+     {
+         return func_176_a((bo)ge, i);
+     }
+diff -U 3 minecraft\nv.java patched\nv.java
+--- minecraft\nv.java	Sat Oct 23 15:49:52 2010
++++ patched\nv.java	Sat Oct 23 15:42:53 2010
+@@ -3,7 +3,7 @@
+ // Decompiler options: packimports(3) braces deadcode 
+ 
+ import java.util.List;
+-import net.minecraft.client.Minecraft;
++//import net.minecraft.client.Minecraft;
+ import org.lwjgl.input.Keyboard;
+ import org.lwjgl.opengl.GL11;
+ 
+@@ -61,19 +61,10 @@
+         {
+             field_1002_h.field_826_a[field_1000_j] = field_1002_h.field_826_a[field_1000_j].substring(0, field_1002_h.field_826_a[field_1000_j].length() - 1);
+         }
+-        if(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_'abcdefghijklmnopqrstuvwxyz{|}~\u2302\307\374\351\342\344\340\345\347\352\353\350\357\356\354\304\305\311\346\306\364\366\362\373\371\377\326\334\370\243\330\327\u0192\341\355\363\372\361\321\252\272\277\256\254\275\274\241\253\273".indexOf(c) < 0 || field_1002_h.field_826_a[field_1000_j].length() >= 15) goto _L2; else goto _L1
+-_L1:
+-        new StringBuilder();
+-        field_1002_h.field_826_a;
+-        field_1000_j;
+-        JVM INSTR dup2_x1 ;
+-        JVM INSTR aaload ;
+-        append();
+-        c;
+-        append();
+-        toString();
+-        JVM INSTR aastore ;
+-_L2:
++        if(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_'abcdefghijklmnopqrstuvwxyz{|}~\u2302\307\374\351\342\344\340\345\347\352\353\350\357\356\354\304\305\311\346\306\364\366\362\373\371\377\326\334\370\243\330\327\u0192\341\355\363\372\361\321\252\272\277\256\254\275\274\241\253\273".indexOf(c) >= 0 && field_1002_h.field_826_a[field_1000_j].length() < 15)
++        {
++        	field_1002_h.field_826_a[field_1000_j] += c;
++        }
+     }
+ 
+     public void func_571_a(int i, int j, float f)
+diff -U 3 minecraft\ny.java patched\ny.java
+--- minecraft\ny.java	Sat Oct 23 15:49:52 2010
++++ patched\ny.java	Sat Oct 23 15:07:56 2010
+@@ -30,7 +30,7 @@
+         }
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_474_a = datainputstream.readInt();
+         field_473_b = datainputstream.readShort();
+@@ -41,7 +41,7 @@
+         field_475_e = x.func_1140_a(field_476_d);
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeInt(field_474_a);
+         dataoutputstream.writeShort(field_473_b);
+diff -U 3 minecraft\nz.java patched\nz.java
+--- minecraft\nz.java	Sat Oct 23 15:49:52 2010
++++ patched\nz.java	Sat Oct 23 14:43:44 2010
+@@ -18,7 +18,7 @@
+         GL11.glScalef(field_204_f, field_204_f, field_204_f);
+     }
+ 
+-    protected volatile void func_168_a(ge ge, float f)
++    protected void func_168_a(ge ge, float f)
+     {
+         func_175_a((hl)ge, f);
+     }
+diff -U 3 minecraft\oh.java patched\oh.java
+--- minecraft\oh.java	Sat Oct 23 15:49:52 2010
++++ patched\oh.java	Sat Oct 23 15:07:56 2010
+@@ -16,12 +16,12 @@
+         field_582_a = s;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_582_a = datainputstream.readUTF();
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeUTF(field_582_a);
+     }
+diff -U 3 minecraft\ok.java patched\ok.java
+--- minecraft\ok.java	Sat Oct 23 15:49:52 2010
++++ patched\ok.java	Sat Oct 23 14:43:44 2010
+@@ -39,12 +39,12 @@
+         }
+     }
+ 
+-    protected volatile float func_172_a(ge ge)
++    protected float func_172_a(ge ge)
+     {
+         return func_191_a((ax)ge);
+     }
+ 
+-    protected volatile boolean func_166_a(ge ge, int i)
++    protected boolean func_166_a(ge ge, int i)
+     {
+         return func_190_a((ax)ge, i);
+     }
+diff -U 3 minecraft\r.java patched\r.java
+--- minecraft\r.java	Sat Oct 23 15:49:52 2010
++++ patched\r.java	Sat Oct 23 14:43:44 2010
+@@ -40,7 +40,7 @@
+         GL11.glPopMatrix();
+     }
+ 
+-    public volatile void func_930_a(ic ic, double d, double d1, double d2, 
++    public void func_930_a(ic ic, double d, double d1, double d2, 
+             float f)
+     {
+         func_931_a((bd)ic, d, d1, d2, f);
+diff -U 3 minecraft\s.java patched\s.java
+--- minecraft\s.java	Sat Oct 23 15:49:52 2010
++++ patched\s.java	Sat Oct 23 15:07:56 2010
+@@ -22,7 +22,7 @@
+         field_554_h = true;
+     }
+ 
+-    public void func_327_a(DataInputStream datainputstream)
++    public void func_327_a(DataInputStream datainputstream) throws IOException
+     {
+         field_561_a = datainputstream.readDouble();
+         field_560_b = datainputstream.readDouble();
+@@ -31,7 +31,7 @@
+         super.func_327_a(datainputstream);
+     }
+ 
+-    public void func_322_a(DataOutputStream dataoutputstream)
++    public void func_322_a(DataOutputStream dataoutputstream) throws IOException
+     {
+         dataoutputstream.writeDouble(field_561_a);
+         dataoutputstream.writeDouble(field_560_b);
+diff -U 3 minecraft\x.java patched\x.java
+--- minecraft\x.java	Sat Oct 23 15:49:52 2010
++++ patched\x.java	Sat Oct 23 15:21:42 2010
+@@ -13,7 +13,7 @@
+     {
+     }
+ 
+-    public static hm func_1138_a(InputStream inputstream)
++    public static hm func_1138_a(InputStream inputstream) throws IOException
+     {
+         DataInputStream datainputstream = new DataInputStream(new GZIPInputStream(inputstream));
+         try
+@@ -27,7 +27,7 @@
+         }
+     }
+ 
+-    public static void func_1143_a(hm hm1, OutputStream outputstream)
++    public static void func_1143_a(hm hm1, OutputStream outputstream) throws IOException
+     {
+         DataOutputStream dataoutputstream = new DataOutputStream(new GZIPOutputStream(outputstream));
+         try
+@@ -40,7 +40,7 @@
+         }
+     }
+ 
+-    public static hm func_1140_a(byte abyte0[])
++    public static hm func_1140_a(byte abyte0[]) throws IOException
+     {
+         DataInputStream datainputstream = new DataInputStream(new GZIPInputStream(new ByteArrayInputStream(abyte0)));
+         try
+@@ -54,7 +54,7 @@
+         }
+     }
+ 
+-    public static byte[] func_1142_a(hm hm1)
++    public static byte[] func_1142_a(hm hm1) throws IOException
+     {
+         ByteArrayOutputStream bytearrayoutputstream = new ByteArrayOutputStream();
+         DataOutputStream dataoutputstream = new DataOutputStream(new GZIPOutputStream(bytearrayoutputstream));
+@@ -69,7 +69,7 @@
+         return bytearrayoutputstream.toByteArray();
+     }
+ 
+-    public static hm func_1141_a(DataInput datainput)
++    public static hm func_1141_a(DataInput datainput) throws IOException
+     {
+         el el1 = el.func_734_b(datainput);
+         if(el1 instanceof hm)
+@@ -81,7 +81,7 @@
+         }
+     }
+ 
+-    public static void func_1139_a(hm hm1, DataOutput dataoutput)
++    public static void func_1139_a(hm hm1, DataOutput dataoutput) throws IOException
+     {
+         el.func_738_a(hm1, dataoutput);
+     }
